@@ -48,6 +48,9 @@ module Veritas
 
         # Return the SQL query
         #
+        # @example
+        #   statement.to_s  # => SQL representation of the relation
+        #
         # @return [String]
         #
         # @api public
