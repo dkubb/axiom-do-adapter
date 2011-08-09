@@ -3,7 +3,7 @@
 require 'rubygems'
 require 'backports'
 require 'backports/basic_object'
-require 'veritas'
+require 'veritas-do-adapter'
 require 'spec'
 require 'spec/autorun'
 
