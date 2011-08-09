@@ -42,7 +42,7 @@ module Veritas
         # @api public
         def each
           return to_enum unless block_given?
-          each_row(command.execute_reader) { |row| yield row }
+          each_row { |row| yield row }
           self
         end
 
@@ -62,8 +62,6 @@ module Veritas
 
         # Yield each row in the result
         #
-        # @param [::DataObjects::Reader] reader
-        #
         # @yield [row]
         #
         # @yieldparam [Array] row
@@ -72,12 +70,13 @@ module Veritas
         # @return [undefined]
         #
         # @api private
-        def each_row(reader)
+        def each_row
+          reader = command.execute_reader
           while reader.next!
             yield reader.values
           end
         ensure
-          reader.close
+          reader.close if reader
         end
 
         # Return the command for the SQL query and column types

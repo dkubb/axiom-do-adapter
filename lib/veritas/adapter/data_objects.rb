@@ -37,41 +37,11 @@ module Veritas
       #
       # @api public
       def read(relation)
-        open do |connection|
-          statement(connection, relation).each { |row| yield row }
-        end
-        self
-      end
-
-    private
-
-      # Handles opening and closing a connection
-      #
-      # @yield [connection]
-      #
-      # @yieldparam [::DataObjects::Connection] connection
-      #   the database connection
-      #
-      # @return [undefined]
-      #
-      # @api private
-      def open
         connection = ::DataObjects::Connection.new(@uri)
-        yield connection
+        Statement.new(connection, relation, SQL::Generator::Relation).each { |row| yield row }
+        self
       ensure
         connection.close if connection
-      end
-
-      # Initialize a Statement for the connection and relation
-      #
-      # @param [Array] *args
-      #   the connection and relation
-      #
-      # @return [Statement]
-      #
-      # @api private
-      def statement(*args)
-        Statement.new(*args << SQL::Generator::Relation)
       end
 
     end # class DataObjects
