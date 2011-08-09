@@ -21,12 +21,12 @@ UncommunicativeMethodName:
   - !ruby/regexp /[0-9]$/
   - !ruby/regexp /[A-Z]/
 LongParameterList:
-  max_params: 2
+  max_params: 3
   exclude: []
   enabled: true
   overrides: {}
 FeatureEnvy:
-  exclude: []
+  exclude: [ 'Veritas::Adapter::DataObjects::Statement#each_row' ]
   enabled: true
 ClassVariable:
   exclude: []
