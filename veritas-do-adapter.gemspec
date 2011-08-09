@@ -43,6 +43,7 @@ Gem::Specification.new do |s|
     "spec/spec_helper.rb",
     "spec/unit/veritas/adapter/data_objects/read_spec.rb",
     "spec/unit/veritas/adapter/data_objects/statement/each_spec.rb",
+    "spec/unit/veritas/adapter/data_objects/statement/generator_spec.rb",
     "spec/unit/veritas/adapter/data_objects/statement/to_s_spec.rb",
     "tasks/metrics/ci.rake",
     "tasks/metrics/flay.rake",

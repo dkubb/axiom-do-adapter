@@ -8,6 +8,13 @@ module Veritas
       class Statement
         include Enumerable, Immutable
 
+        # Return the SQL generator class
+        #
+        # @return [Class<SQL::Generator::Relation>]
+        #
+        # @api private
+        attr_reader :generator
+
         # Initialize a statement
         #
         # @param [::DataObjects::Connection] connection
