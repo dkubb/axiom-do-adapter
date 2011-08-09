@@ -14,7 +14,7 @@ module Veritas
         #   the database connection
         # @param [Relation] relation
         #   the relation to generate the SQL from
-        # @param [SQL::Generator::Relation] generator
+        # @param [Class<SQL::Generator::Relation>] generator
         #   optional object to generate the SQL with
         #
         # @return [undefined]
