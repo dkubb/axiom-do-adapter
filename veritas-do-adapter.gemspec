@@ -41,6 +41,7 @@ Gem::Specification.new do |s|
     "spec/shared/idempotent_method_behaviour.rb",
     "spec/spec.opts",
     "spec/spec_helper.rb",
+    "spec/unit/veritas/adapter/data_objects/read_spec.rb",
     "spec/unit/veritas/adapter/data_objects/statement/each_spec.rb",
     "spec/unit/veritas/adapter/data_objects/statement/to_s_spec.rb",
     "tasks/metrics/ci.rake",
