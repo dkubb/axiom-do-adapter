@@ -2,8 +2,9 @@
 
 source :rubygems
 
-gem 'data_objects', '~> 0.10.6', :git => 'git://github.com/datamapper/do.git'
-gem 'veritas',      '~> 0.0.5',  :git => 'git://github.com/dkubb/veritas.git'
+gem 'data_objects',          '~> 0.10.6', :git => 'git://github.com/datamapper/do.git'
+gem 'veritas',               '~> 0.0.6',  :git => 'git://github.com/dkubb/veritas.git'
+gem 'veritas-sql-generator', '~> 0.0.6',  :git => 'git://github.com/dkubb/veritas-sql-generator.git'
 
 group :development do
   gem 'backports', '~> 2.3.0'
