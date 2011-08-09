@@ -38,7 +38,7 @@ module Veritas
       # @api public
       def read(relation)
         connection = ::DataObjects::Connection.new(@uri)
-        Statement.new(connection, relation, SQL::Generator::Relation).each { |row| yield row }
+        Statement.new(connection, relation).each { |row| yield row }
         self
       ensure
         connection.close if connection

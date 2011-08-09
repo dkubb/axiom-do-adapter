@@ -15,12 +15,12 @@ module Veritas
         # @param [Relation] relation
         #   the relation to generate the SQL from
         # @param [SQL::Generator::Relation] generator
-        #   the object to generate the SQL with
+        #   optional object to generate the SQL with
         #
         # @return [undefined]
         #
         # @api private
-        def initialize(connection, relation, generator)
+        def initialize(connection, relation, generator = SQL::Generator::Relation)
           @connection = connection
           @relation   = relation
           @generator  = generator

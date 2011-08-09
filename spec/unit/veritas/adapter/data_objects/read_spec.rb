@@ -55,7 +55,7 @@ describe Adapter::DataObjects, '#read' do
   end
 
   it 'initializes a statement' do
-    described_class::Statement.should_receive(:new).with(connection, relation, SQL::Generator::Relation).and_return(statement)
+    described_class::Statement.should_receive(:new).with(connection, relation).and_return(statement)
     subject
   end
 end
