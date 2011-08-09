@@ -32,8 +32,8 @@ begin
       raise "ruby2ruby version #{Ruby2Ruby::VERSION} may not work properly, 1.2.2 *only* is recommended for use with heckle"
     end
 
-    require 'veritas'
-    root_module = 'Veritas'
+    require 'veritas-do-adapter'
+    root_module = 'Veritas::Adapter::DataObjects'
 
     spec_dir = Pathname('spec/unit')
 
@@ -41,6 +41,8 @@ begin
       next if method.kind_of?(Hash)
       NameMap::MAP[op] = { :default => method }
     end
+
+    aliases = Hash.new { |h,mod| h[mod] = Hash.new { |h,method| h[method] = method } }
 
     map = NameMap.new
 
