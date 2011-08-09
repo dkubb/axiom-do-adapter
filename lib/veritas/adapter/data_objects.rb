@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 require 'veritas'
+require 'veritas-sql-generator'
 require 'data_objects'
 
 module Veritas
