@@ -62,7 +62,7 @@ module Veritas
         #
         # @api public
         def to_s
-          @generator.visit(@relation).to_sql.freeze
+          generator.visit(@relation).to_sql.freeze
         end
 
       private
