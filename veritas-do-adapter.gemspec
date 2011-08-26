@@ -59,7 +59,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = %q{https://github.com/dkubb/veritas-do-adapter}
   s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.6}
+  s.rubygems_version = %q{1.8.9}
   s.summary = %q{Vertias DataObjects adapter}
 
   if s.respond_to? :specification_version then
