@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Dan Kubb}]
-  s.date = %q{2011-08-09}
+  s.date = %q{2011-08-26}
   s.description = %q{Use Veritas relations with an RDBMS}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -70,29 +70,29 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<veritas>, ["~> 0.0.6"])
       s.add_runtime_dependency(%q<veritas-sql-generator>, ["~> 0.0.6"])
       s.add_development_dependency(%q<backports>, ["~> 2.3.0"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.6.2"])
-      s.add_development_dependency(%q<rake>, ["~> 0.9.1"])
+      s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
+      s.add_development_dependency(%q<rake>, ["~> 0.9.2"])
       s.add_development_dependency(%q<rspec>, ["~> 1.3.2"])
-      s.add_development_dependency(%q<yard>, ["~> 0.7.1"])
+      s.add_development_dependency(%q<yard>, ["~> 0.7.2"])
     else
       s.add_dependency(%q<data_objects>, ["~> 0.10.6"])
       s.add_dependency(%q<veritas>, ["~> 0.0.6"])
       s.add_dependency(%q<veritas-sql-generator>, ["~> 0.0.6"])
       s.add_dependency(%q<backports>, ["~> 2.3.0"])
-      s.add_dependency(%q<jeweler>, ["~> 1.6.2"])
-      s.add_dependency(%q<rake>, ["~> 0.9.1"])
+      s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
+      s.add_dependency(%q<rake>, ["~> 0.9.2"])
       s.add_dependency(%q<rspec>, ["~> 1.3.2"])
-      s.add_dependency(%q<yard>, ["~> 0.7.1"])
+      s.add_dependency(%q<yard>, ["~> 0.7.2"])
     end
   else
     s.add_dependency(%q<data_objects>, ["~> 0.10.6"])
     s.add_dependency(%q<veritas>, ["~> 0.0.6"])
     s.add_dependency(%q<veritas-sql-generator>, ["~> 0.0.6"])
     s.add_dependency(%q<backports>, ["~> 2.3.0"])
-    s.add_dependency(%q<jeweler>, ["~> 1.6.2"])
-    s.add_dependency(%q<rake>, ["~> 0.9.1"])
+    s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
+    s.add_dependency(%q<rake>, ["~> 0.9.2"])
     s.add_dependency(%q<rspec>, ["~> 1.3.2"])
-    s.add_dependency(%q<yard>, ["~> 0.7.1"])
+    s.add_dependency(%q<yard>, ["~> 0.7.2"])
   end
 end
 
