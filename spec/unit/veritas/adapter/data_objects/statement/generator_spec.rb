@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 require 'spec_helper'
+require 'veritas/adapter/data_objects/statement'
 
 describe Adapter::DataObjects::Statement, '#generator' do
   subject { object.generator }

@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 require 'spec_helper'
+require 'veritas/adapter/data_objects'
 
 shared_examples_for 'it uses the data_objects driver' do
   let(:connection) { mock('Connection', :close => nil) }

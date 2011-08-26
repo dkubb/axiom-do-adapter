@@ -3,9 +3,10 @@
 require 'rubygems'
 require 'backports'
 require 'backports/basic_object'
-require 'veritas-do-adapter'
 require 'spec'
 require 'spec/autorun'
+require 'veritas'
+require 'veritas-sql-generator'
 
 include Veritas
 

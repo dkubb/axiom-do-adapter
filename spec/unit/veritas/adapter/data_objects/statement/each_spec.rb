@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 require 'spec_helper'
+require 'veritas/adapter/data_objects/statement'
 
 describe Adapter::DataObjects::Statement, '#each' do
   let(:reader)     { mock('Reader', :next! => false).as_null_object            }
