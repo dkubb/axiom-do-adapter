@@ -74,6 +74,28 @@ module Veritas
       Relation::Materialized.new(header, to_a, directions)
     end
 
+    # Return a relation that is the join of two relations
+    #
+    # @example natural join
+    #   join = relation.join(other)
+    #
+    # @param [Relation] other
+    #   the other relation to join
+    #
+    # @return [RelationGateway]
+    #   return a gateway if the adapters are equal
+    # @return [Algebra::Join]
+    #   return a normal join when the adapters are not equal
+    #
+    # @api public
+    def join(other)
+      if other.respond_to?(:adapter) && adapter.eql?(other.adapter)
+        method_missing(__method__, other.relation)
+      else
+        Algebra::Join.new(self, other)
+      end
+    end
+
     # Test if the method is supported on this object
     #
     # @param [Symbol] method
