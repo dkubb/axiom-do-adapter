@@ -43,7 +43,7 @@ module Veritas
 
     # Test if the method is supported on this object
     #
-    # @param [Symbol] name
+    # @param [Symbol] method
     #
     # @return [Boolean]
     #
