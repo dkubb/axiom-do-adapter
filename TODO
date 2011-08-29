@@ -5,3 +5,4 @@
   * #union
   * #difference
   * #summarize
+  * #join w/block (theta-join)
