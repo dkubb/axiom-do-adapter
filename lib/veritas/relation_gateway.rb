@@ -6,6 +6,8 @@ module Veritas
   class RelationGateway
     include Enumerable, Immutable
 
+    DECORATED_CLASS = Relation
+
     # Initialize a RelationGateway
     #
     # @param [Adapter::DataObjects] adapter
@@ -95,6 +97,8 @@ module Veritas
       response = @relation.public_send(*args, &block)
       if response.equal?(@relation)
         self
+      elsif response.kind_of?(DECORATED_CLASS)
+        self.class.new(@adapter, response)
       else
         response
       end
@@ -111,7 +115,7 @@ module Veritas
     #
     # @api private
     def each_tuple
-      Relation.new(header, @adapter.read(@relation)).each do |tuple|
+      DECORATED_CLASS.new(header, @adapter.read(@relation)).each do |tuple|
         yield tuple
       end
     end
