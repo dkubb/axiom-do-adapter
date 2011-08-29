@@ -6,8 +6,8 @@ module Veritas
   class RelationGateway
     include Enumerable, Immutable
 
-    # remove Object#extend so relation#extend can be proxied
-    undef_method :extend
+    # remove methods so they can be proxied
+    undef_method :extend, :sort_by
 
     DECORATED_CLASS = Relation
 
