@@ -54,6 +54,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/relation_gateway/each_spec.rb",
     "spec/unit/veritas/relation_gateway/project_spec.rb",
     "spec/unit/veritas/relation_gateway/remove_spec.rb",
+    "spec/unit/veritas/relation_gateway/rename_spec.rb",
     "spec/unit/veritas/relation_gateway/respond_to_spec.rb",
     "tasks/metrics/ci.rake",
     "tasks/metrics/flay.rake",
