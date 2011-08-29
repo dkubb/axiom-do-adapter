@@ -49,7 +49,7 @@ module Veritas
     #
     # @api private
     def respond_to?(method, *)
-      super || @relation.respond_to?(method)
+      super || forwardable?(method)
     end
 
   private
@@ -67,8 +67,32 @@ module Veritas
     #
     # @api private
     def method_missing(method, *args, &block)
-      return super unless respond_to?(method)
-      response = @relation.public_send(method, *args, &block)
+      forwardable?(method) ? forward(method, *args, &block) : super
+    end
+
+    # Test if the method can be forwarded to the relation
+    #
+    # @param [Symbol] method
+    #
+    # @return [Boolean]
+    #
+    # @api private
+    def forwardable?(method)
+      @relation.respond_to?(method)
+    end
+
+    # Forward the message to the relation
+    #
+    # @param [Array] *args
+    #
+    # @return [self]
+    #   return self for all command methods
+    # @return [Object]
+    #   return response from all query methods
+    #
+    # @api private
+    def forward(*args, &block)
+      response = @relation.public_send(*args, &block)
       if response.equal?(@relation)
         self
       else
