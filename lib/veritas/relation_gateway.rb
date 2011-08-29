@@ -46,6 +46,18 @@ module Veritas
       self
     end
 
+    # Return a relation with each tuple materialized
+    #
+    # @example
+    #   materialized = gateway.materialize
+    #
+    # @return [Relation::Materialized]
+    #
+    # @api public
+    def materialize
+      Relation::Materialized.new(header, to_a, directions)
+    end
+
     # Test if the method is supported on this object
     #
     # @param [Symbol] method

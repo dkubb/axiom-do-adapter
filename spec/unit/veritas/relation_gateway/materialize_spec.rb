@@ -1,0 +1,37 @@
+# encoding: utf-8
+
+require 'spec_helper'
+require 'veritas/relation_gateway'
+
+describe RelationGateway, '#materialize' do
+  subject { object.materialize }
+
+  let(:header)       { mock('Header')                                                                          }
+  let(:directions)   { mock('Directions')                                                                      }
+  let(:adapter)      { stub.as_null_object                                                                     }
+  let(:relation)     { mock('Relation', :header => header, :directions => directions, :materialized? => false) }
+  let(:object)       { described_class.new(adapter, relation)                                                  }
+  let(:materialized) { mock('Materialized')                                                                    }
+
+  before do
+    Relation.stub!(:new).and_return(stub.as_null_object)
+    Relation::Materialized.stub!(:new).and_return(materialized)
+  end
+
+  it { should equal(materialized) }
+
+  it 'initializes the materialized relation with the header' do
+    Relation::Materialized.should_receive(:new).with(header, anything, anything)
+    subject
+  end
+
+  it 'initializes the materialized relation with the tuples' do
+    Relation::Materialized.should_receive(:new).with(anything, [], anything)
+    subject
+  end
+
+  it 'initializes the materialized relation with the directions' do
+    Relation::Materialized.should_receive(:new).with(anything, anything, directions)
+    subject
+  end
+end
