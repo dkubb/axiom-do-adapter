@@ -42,6 +42,7 @@ Gem::Specification.new do |s|
     "spec/shared/command_method_behavior.rb",
     "spec/shared/each_method_behaviour.rb",
     "spec/shared/idempotent_method_behaviour.rb",
+    "spec/shared/unary_relation_method_behaviour.rb",
     "spec/spec.opts",
     "spec/spec_helper.rb",
     "spec/unit/veritas/adapter/data_objects/class_methods/new_spec.rb",
