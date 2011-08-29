@@ -1,5 +1,4 @@
 * Add other relation methods to RelationGateway:
-  * #extend
   * #sort_by
   * #reverse
   * #drop
