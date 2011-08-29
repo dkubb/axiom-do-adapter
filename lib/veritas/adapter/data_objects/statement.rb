@@ -8,35 +8,28 @@ module Veritas
       class Statement
         include Enumerable, Immutable
 
-        # Return the SQL generator class
-        #
-        # @return [Class<SQL::Generator::Relation>]
-        #
-        # @api private
-        attr_reader :generator
-
         # Initialize a statement
         #
         # @param [::DataObjects::Connection] connection
         #   the database connection
         # @param [Relation] relation
         #   the relation to generate the SQL from
-        # @param [Class<SQL::Generator::Relation>] generator
-        #   optional object to generate the SQL with
+        # @param [#visit] visitor
+        #   optional object to visit the relation and generate SQL with
         #
         # @return [undefined]
         #
         # @api private
-        def initialize(connection, relation, generator = SQL::Generator::Relation)
+        def initialize(connection, relation, visitor = SQL::Generator::Relation)
           @connection = connection
           @relation   = relation
-          @generator  = generator
+          @visitor    = visitor
         end
 
         # Iterate over each row in the results
         #
         # @example
-        #   statement = Statement.new(connection, relation, generator)
+        #   statement = Statement.new(connection, relation, visitor)
         #   statement.each { |row| ... }
         #
         # @yield [row]
@@ -62,7 +55,7 @@ module Veritas
         #
         # @api public
         def to_s
-          generator.visit(@relation).to_sql.freeze
+          @visitor.visit(@relation).to_sql.freeze
         end
 
       private

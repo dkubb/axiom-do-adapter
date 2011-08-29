@@ -6,20 +6,48 @@ require 'veritas/adapter/data_objects/statement'
 describe Adapter::DataObjects::Statement, '#to_s' do
   subject { object.to_s }
 
-  let(:sql)        { mock('SQL')                                          }
-  let(:connection) { stub                                                 }
-  let(:relation)   { mock('Relation')                                     }
-  let(:generator)  { mock('Generator', :to_sql => sql).as_null_object     }
-  let(:object)     { described_class.new(connection, relation, generator) }
+  let(:sql)        { mock('SQL')                       }
+  let(:connection) { stub                              }
+  let(:relation)   { mock('Relation')                  }
+  let(:generator)  { mock('Generator', :to_sql => sql) }
 
-  it_should_behave_like 'an idempotent method'
+  context 'without a visitor' do
+    let(:visitor) { SQL::Generator::Relation                  }  # default visitor
+    let(:object)  { described_class.new(connection, relation) }
 
-  it { should be_frozen }
+    before do
+      visitor.stub!(:visit).and_return(generator)
+    end
 
-  it { should equal(sql) }
+    it_should_behave_like 'an idempotent method'
 
-  it 'visits the relation' do
-    generator.should_receive(:visit).with(relation).and_return(generator)
-    subject
+    it { should be_frozen }
+
+    it { should equal(sql) }
+
+    it 'visits the relation' do
+      visitor.should_receive(:visit).with(relation)
+      subject
+    end
+  end
+
+  context 'with a visitor' do
+    let(:visitor) { mock('Visitor', :visit => generator)               }
+    let(:object)  { described_class.new(connection, relation, visitor) }
+
+    before do
+      visitor.stub!(:visit).and_return(generator)
+    end
+
+    it_should_behave_like 'an idempotent method'
+
+    it { should be_frozen }
+
+    it { should equal(sql) }
+
+    it 'visits the relation' do
+      visitor.should_receive(:visit).with(relation)
+      subject
+    end
   end
 end
