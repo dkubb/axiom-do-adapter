@@ -33,7 +33,11 @@ begin
     end
 
     require 'veritas-do-adapter'
-    root_module_regexp = /Veritas::Adapter::DataObjects/
+
+    root_module_regexp = Regexp.union(
+      'Veritas::Adapter::DataObjects',
+      'Veritas::RelationGateway'
+    )
 
     spec_dir = Pathname('spec/unit')
 
