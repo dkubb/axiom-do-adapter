@@ -9,6 +9,7 @@ module Veritas
 
     # An adapter wrapping a DataObjects connection
     class DataObjects
+      include Immutable
 
       # Initialize a DataObjects adapter
       #
