@@ -1,13 +1,13 @@
 * Add other relation methods to RelationGateway:
+  * #extend
+  * #sort_by
+  * #reverse
+  * #drop
+  * #take
   * #join
   * #product
   * #intersect
   * #union
   * #difference
-  * #extend
   * #summarize
-  * #sort_by
-  * #reverse
-  * #drop
-  * #take
   * #materialize
