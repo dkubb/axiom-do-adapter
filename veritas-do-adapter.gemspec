@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Dan Kubb}]
-  s.date = %q{2011-08-28}
+  s.date = %q{2011-08-29}
   s.description = %q{Use Veritas relations with an RDBMS}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -46,8 +46,8 @@ Gem::Specification.new do |s|
     "spec/spec_helper.rb",
     "spec/unit/veritas/adapter/data_objects/read_spec.rb",
     "spec/unit/veritas/adapter/data_objects/statement/each_spec.rb",
-    "spec/unit/veritas/adapter/data_objects/statement/generator_spec.rb",
     "spec/unit/veritas/adapter/data_objects/statement/to_s_spec.rb",
+    "spec/unit/veritas/relation_gateway/class_methods/new_spec.rb",
     "spec/unit/veritas/relation_gateway/each_spec.rb",
     "spec/unit/veritas/relation_gateway/respond_to_spec.rb",
     "tasks/metrics/ci.rake",

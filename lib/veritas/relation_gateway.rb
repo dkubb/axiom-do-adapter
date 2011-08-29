@@ -4,7 +4,7 @@ module Veritas
 
   # A relation backed by an adapter
   class RelationGateway
-    include Enumerable
+    include Enumerable, Immutable
 
     # Initialize a RelationGateway
     #
