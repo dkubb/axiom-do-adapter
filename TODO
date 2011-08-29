@@ -1,0 +1,17 @@
+* Add other relation methods to RelationGateway:
+  * #project
+  * #remove
+  * #rename
+  * #restrict
+  * #join
+  * #product
+  * #intersect
+  * #union
+  * #difference
+  * #extend
+  * #summarize
+  * #sort_by
+  * #reverse
+  * #drop
+  * #take
+  * #materialize
