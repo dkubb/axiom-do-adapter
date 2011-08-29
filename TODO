@@ -1,5 +1,4 @@
 * Add other relation methods to RelationGateway:
-  * #drop
   * #take
   * #join
   * #product
