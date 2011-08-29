@@ -61,6 +61,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/relation_gateway/restrict_spec.rb",
     "spec/unit/veritas/relation_gateway/reverse_spec.rb",
     "spec/unit/veritas/relation_gateway/sort_by_spec.rb",
+    "spec/unit/veritas/relation_gateway/take_spec.rb",
     "tasks/metrics/ci.rake",
     "tasks/metrics/flay.rake",
     "tasks/metrics/flog.rake",
