@@ -111,7 +111,7 @@ module Veritas
     #
     # @api private
     def each_tuple
-      Relation.new(@relation.header, @adapter.read(@relation)).each do |tuple|
+      Relation.new(header, @adapter.read(@relation)).each do |tuple|
         yield tuple
       end
     end
