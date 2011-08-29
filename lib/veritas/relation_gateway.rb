@@ -11,6 +11,22 @@ module Veritas
 
     DECORATED_CLASS = Relation
 
+    # The adapter the gateway will use to fetch results
+    #
+    # @return [Adapter::DataObjects]
+    #
+    # @api private
+    attr_reader :adapter
+    protected :adapter
+
+    # The relation the gateway will use to generate SQL
+    #
+    # @return [Relation]
+    #
+    # @api private
+    attr_reader :relation
+    protected :relation
+
     # Initialize a RelationGateway
     #
     # @param [Adapter::DataObjects] adapter
@@ -95,7 +111,7 @@ module Veritas
     #
     # @api private
     def forwardable?(method)
-      @relation.respond_to?(method)
+      relation.respond_to?(method)
     end
 
     # Forward the message to the relation
@@ -109,11 +125,12 @@ module Veritas
     #
     # @api private
     def forward(*args, &block)
-      response = @relation.public_send(*args, &block)
-      if response.equal?(@relation)
+      relation = self.relation
+      response = relation.public_send(*args, &block)
+      if response.equal?(relation)
         self
       elsif response.kind_of?(DECORATED_CLASS)
-        self.class.new(@adapter, response)
+        self.class.new(adapter, response)
       else
         response
       end
@@ -130,7 +147,7 @@ module Veritas
     #
     # @api private
     def each_tuple
-      DECORATED_CLASS.new(header, @adapter.read(@relation)).each do |tuple|
+      DECORATED_CLASS.new(header, adapter.read(relation)).each do |tuple|
         yield tuple
       end
     end
