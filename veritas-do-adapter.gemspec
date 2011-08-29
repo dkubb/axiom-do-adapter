@@ -51,6 +51,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/adapter/data_objects/statement/each_spec.rb",
     "spec/unit/veritas/adapter/data_objects/statement/to_s_spec.rb",
     "spec/unit/veritas/relation_gateway/class_methods/new_spec.rb",
+    "spec/unit/veritas/relation_gateway/drop_spec.rb",
     "spec/unit/veritas/relation_gateway/each_spec.rb",
     "spec/unit/veritas/relation_gateway/extend_spec.rb",
     "spec/unit/veritas/relation_gateway/project_spec.rb",

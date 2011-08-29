@@ -7,7 +7,7 @@ module Veritas
     include Enumerable, Immutable
 
     # remove methods so they can be proxied
-    undef_method :extend, :sort_by
+    undef_method :drop, :extend, :sort_by
 
     DECORATED_CLASS = Relation
 
