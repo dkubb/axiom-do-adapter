@@ -1,9 +1,9 @@
 # encoding: utf-8
 
 require 'spec_helper'
-require 'veritas/relation_gateway'
+require 'veritas/relation/gateway'
 
-describe RelationGateway, '#respond_to?' do
+describe Relation::Gateway, '#respond_to?' do
   subject { object.respond_to?(method) }
 
   let(:relation) { mock('Relation', :header => stub)   }

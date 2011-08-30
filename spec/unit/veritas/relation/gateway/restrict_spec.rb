@@ -1,9 +1,9 @@
 # encoding: utf-8
 
 require 'spec_helper'
-require 'veritas/relation_gateway'
+require 'veritas/relation/gateway'
 
-describe RelationGateway, '#restrict' do
+describe Relation::Gateway, '#restrict' do
   subject { object.restrict(args, &block) }
 
   let(:adapter)  { mock('Adapter')                         }

@@ -1,9 +1,9 @@
 # encoding: utf-8
 
 require 'spec_helper'
-require 'veritas/relation_gateway'
+require 'veritas/relation/gateway'
 
-describe RelationGateway, '.new' do
+describe Relation::Gateway, '.new' do
   subject { object.new(adapter, relation) }
 
   let(:adapter)  { stub            }

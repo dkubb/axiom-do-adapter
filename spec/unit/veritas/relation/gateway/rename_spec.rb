@@ -1,21 +1,21 @@
 # encoding: utf-8
 
 require 'spec_helper'
-require 'veritas/relation_gateway'
+require 'veritas/relation/gateway'
 
-describe RelationGateway, '#project' do
-  subject { object.project(args) }
+describe Relation::Gateway, '#rename' do
+  subject { object.rename(args) }
 
   let(:adapter)  { mock('Adapter')                         }
-  let(:relation) { mock('Relation', :project => response)  }
+  let(:relation) { mock('Relation', :rename => response)   }
   let(:response) { mock('New Relation', :kind_of? => true) }
   let!(:object)  { described_class.new(adapter, relation)  }
   let(:args)     { stub                                    }
 
   it_should_behave_like 'a unary relation method'
 
-  it 'forwards the arguments to relation#project' do
-    relation.should_receive(:project).with(args)
+  it 'forwards the arguments to relation#rename' do
+    relation.should_receive(:rename).with(args)
     subject
   end
 end

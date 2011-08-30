@@ -1,9 +1,9 @@
 # encoding: utf-8
 
 require 'spec_helper'
-require 'veritas/relation_gateway'
+require 'veritas/relation/gateway'
 
-describe RelationGateway, '#product' do
+describe Relation::Gateway, '#product' do
   subject { object.product(other) }
 
   let(:adapter)         { mock('Adapter')                        }

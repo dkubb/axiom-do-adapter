@@ -1,9 +1,9 @@
 # encoding: utf-8
 
 require 'spec_helper'
-require 'veritas/relation_gateway'
+require 'veritas/relation/gateway'
 
-describe RelationGateway, '#each' do
+describe Relation::Gateway, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
   let(:header)   { mock('Header')                         }

@@ -36,7 +36,7 @@ begin
 
     root_module_regexp = Regexp.union(
       'Veritas::Adapter::DataObjects',
-      'Veritas::RelationGateway'
+      'Veritas::Relation::Gateway'
     )
 
     spec_dir = Pathname('spec/unit')

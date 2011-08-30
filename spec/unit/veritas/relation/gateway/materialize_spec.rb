@@ -1,9 +1,9 @@
 # encoding: utf-8
 
 require 'spec_helper'
-require 'veritas/relation_gateway'
+require 'veritas/relation/gateway'
 
-describe RelationGateway, '#materialize' do
+describe Relation::Gateway, '#materialize' do
   subject { object.materialize }
 
   let(:header)       { mock('Header')                                                                          }
