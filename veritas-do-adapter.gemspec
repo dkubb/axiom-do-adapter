@@ -57,6 +57,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/relation_gateway/extend_spec.rb",
     "spec/unit/veritas/relation_gateway/join_spec.rb",
     "spec/unit/veritas/relation_gateway/materialize_spec.rb",
+    "spec/unit/veritas/relation_gateway/product_spec.rb",
     "spec/unit/veritas/relation_gateway/project_spec.rb",
     "spec/unit/veritas/relation_gateway/remove_spec.rb",
     "spec/unit/veritas/relation_gateway/rename_spec.rb",

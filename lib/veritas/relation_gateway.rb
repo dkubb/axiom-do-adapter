@@ -89,11 +89,25 @@ module Veritas
     #
     # @api public
     def join(other)
-      if other.respond_to?(:adapter) && adapter.eql?(other.adapter)
-        forward(__method__, other.relation)
-      else
-        Algebra::Join.new(self, other)
-      end
+      binary_operation(__method__, other, Algebra::Join)
+    end
+
+    # Return a relation that is the cartesian product of two relations
+    #
+    # @example
+    #   product = gateway.product(other)
+    #
+    # @param [Relation] other
+    #   the other relation to find the product with
+    #
+    # @return [RelationGateway]
+    #   return a gateway if the adapters are equal
+    # @return [Algebra::Product]
+    #   return a normal product when the adapters are not equal
+    #
+    # @api public
+    def product(other)
+      binary_operation(__method__, other, Algebra::Product)
     end
 
     # Test if the method is supported on this object
@@ -171,6 +185,24 @@ module Veritas
     def each_tuple
       DECORATED_CLASS.new(header, adapter.read(relation)).each do |tuple|
         yield tuple
+      end
+    end
+
+    # Return a binary relation
+    #
+    # @param [Relation] other
+    #
+    # @return [RelationGateway]
+    #   return a gateway if the adapters are equal
+    # @return [Relation]
+    #   return a binary relation when the adapters are not equal
+    #
+    # @api private
+    def binary_operation(method, other, factory)
+      if other.respond_to?(:adapter) && adapter.eql?(other.adapter)
+        forward(method, other.relation)
+      else
+        factory.new(self, other)
       end
     end
 
