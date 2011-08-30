@@ -6,10 +6,10 @@ module Veritas
   class RelationGateway
     include Enumerable, Immutable
 
+    DECORATED_CLASS = Relation
+
     # remove methods so they can be proxied
     undef_method :drop, :extend, :sort_by, :take
-
-    DECORATED_CLASS = Relation
 
     # The adapter the gateway will use to fetch results
     #
