@@ -28,7 +28,7 @@ module Veritas
       attr_reader :relation
       protected :relation
 
-      # Initialize a Relation::Gateway
+      # Initialize a Gateway
       #
       # @param [Adapter::DataObjects] adapter
       #
@@ -45,7 +45,7 @@ module Veritas
       # Iterate over each row in the results
       #
       # @example
-      #   gateway = Relation::Gateway.new(adapter, relation)
+      #   gateway = Gateway.new(adapter, relation)
       #   gateway.each { |tuple| ... }
       #
       # @yield [tuple]
@@ -67,11 +67,11 @@ module Veritas
       # @example
       #   materialized = gateway.materialize
       #
-      # @return [Relation::Materialized]
+      # @return [Materialized]
       #
       # @api public
       def materialize
-        Relation::Materialized.new(header, to_a, directions)
+        Materialized.new(header, to_a, directions)
       end
 
       # Return a relation that is the join of two relations
@@ -82,7 +82,7 @@ module Veritas
       # @param [Relation] other
       #   the other relation to join
       #
-      # @return [Relation::Gateway]
+      # @return [Gateway]
       #   return a gateway if the adapters are equal
       # @return [Algebra::Join]
       #   return a normal join when the adapters are not equal
@@ -100,7 +100,7 @@ module Veritas
       # @param [Relation] other
       #   the other relation to find the product with
       #
-      # @return [Relation::Gateway]
+      # @return [Gateway]
       #   return a gateway if the adapters are equal
       # @return [Algebra::Product]
       #   return a normal product when the adapters are not equal
@@ -118,7 +118,7 @@ module Veritas
       # @param [Relation] other
       #   the other relation to find the union with
       #
-      # @return [Relation::Gateway]
+      # @return [Gateway]
       #   return a gateway if the adapters are equal
       # @return [Algebra::Union]
       #   return a normal union when the adapters are not equal
@@ -136,7 +136,7 @@ module Veritas
       # @param [Relation] other
       #   the other relation to find the intersect with
       #
-      # @return [Relation::Gateway]
+      # @return [Gateway]
       #   return a gateway if the adapters are equal
       # @return [Algebra::Intersection]
       #   return a normal intersection when the adapters are not equal
@@ -154,7 +154,7 @@ module Veritas
       # @param [Relation] other
       #   the other relation to find the difference with
       #
-      # @return [Relation::Gateway]
+      # @return [Gateway]
       #   return a gateway if the adapters are equal
       # @return [Algebra::Difference]
       #   return a normal dfference when the adapters are not equal
@@ -244,7 +244,7 @@ module Veritas
       #
       # @param [Relation] other
       #
-      # @return [Relation::Gateway]
+      # @return [Gateway]
       #   return a gateway if the adapters are equal
       # @return [Relation]
       #   return a binary relation when the adapters are not equal
