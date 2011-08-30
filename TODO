@@ -1,5 +1,4 @@
 * Add other relation methods to RelationGateway:
-  * #intersect
   * #difference
   * #summarize
   * #join w/block (theta-join)
