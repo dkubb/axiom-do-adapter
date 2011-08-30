@@ -9,7 +9,7 @@ module Veritas
       DECORATED_CLASS = superclass
 
       # remove methods so they can be proxied
-      undef_method *DECORATED_CLASS.public_instance_methods(false)
+      undef_method *DECORATED_CLASS.public_instance_methods(false).map(&:to_s) - %w[ materialize ]
       undef_method :project, :remove, :extend, :rename, :restrict, :sort_by, :reverse, :drop, :take
 
       # The adapter the gateway will use to fetch results
@@ -60,18 +60,6 @@ module Veritas
         return to_enum unless block_given?
         tuples.each { |tuple| yield tuple }
         self
-      end
-
-      # Return a relation with each tuple materialized
-      #
-      # @example
-      #   materialized = gateway.materialize
-      #
-      # @return [Materialized]
-      #
-      # @api public
-      def materialize
-        Materialized.new(header, to_a, directions)
       end
 
       # Return a relation that is the join of two relations
