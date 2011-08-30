@@ -10,7 +10,7 @@ describe Relation::Gateway, '#materialize' do
   let(:directions)   { mock('Directions')                                                                      }
   let(:adapter)      { stub.as_null_object                                                                     }
   let(:relation)     { mock('Relation', :header => header, :directions => directions, :materialized? => false) }
-  let(:object)       { described_class.new(adapter, relation)                                                  }
+  let!(:object)      { described_class.new(adapter, relation)                                                  }
   let(:materialized) { mock('Materialized')                                                                    }
 
   before do

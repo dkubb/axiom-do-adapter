@@ -11,7 +11,7 @@ describe Relation::Gateway, '#each' do
   let(:tuple)    { mock('Tuple')                          }
   let(:adapter)  { mock('Adapter')                        }
   let(:relation) { mock('Relation')                       }
-  let(:object)   { described_class.new(adapter, relation) }
+  let!(:object)  { described_class.new(adapter, relation) }
   let(:yields)   { []                                     }
 
   context 'with an unmaterialized relation' do
