@@ -59,6 +59,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/relation/gateway/intersect_spec.rb",
     "spec/unit/veritas/relation/gateway/join_spec.rb",
     "spec/unit/veritas/relation/gateway/materialize_spec.rb",
+    "spec/unit/veritas/relation/gateway/optimize_spec.rb",
     "spec/unit/veritas/relation/gateway/product_spec.rb",
     "spec/unit/veritas/relation/gateway/project_spec.rb",
     "spec/unit/veritas/relation/gateway/remove_spec.rb",
