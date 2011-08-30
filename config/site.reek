@@ -35,7 +35,7 @@ BooleanParameter:
   exclude: []
   enabled: true
 IrresponsibleModule:
-  exclude: []
+  exclude: [ 'Veritas::Relation' ]
   enabled: true
 UncommunicativeModuleName:
   accept: []
