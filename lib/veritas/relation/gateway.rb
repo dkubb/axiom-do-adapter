@@ -10,7 +10,7 @@ module Veritas
 
       # remove methods so they can be proxied
       undef_method *DECORATED_CLASS.public_instance_methods(false)
-      undef_method :project, :remove, :rename, :restrict, :sort_by, :reverse, :drop, :take, :extend
+      undef_method :project, :remove, :extend, :rename, :restrict, :sort_by, :reverse, :drop, :take
 
       # The adapter the gateway will use to fetch results
       #
