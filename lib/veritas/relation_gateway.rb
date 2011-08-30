@@ -128,6 +128,24 @@ module Veritas
       binary_operation(__method__, other, Algebra::Union)
     end
 
+    # Return the intersection between relations
+    #
+    # @example
+    #   intersect = gateway.intersect(other)
+    #
+    # @param [Relation] other
+    #   the other relation to find the intersect with
+    #
+    # @return [RelationGateway]
+    #   return a gateway if the adapters are equal
+    # @return [Algebra::Intersection]
+    #   return a normal intersection when the adapters are not equal
+    #
+    # @api public
+    def intersect(other)
+      binary_operation(__method__, other, Algebra::Intersection)
+    end
+
     # Test if the method is supported on this object
     #
     # @param [Symbol] method
