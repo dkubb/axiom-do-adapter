@@ -57,8 +57,7 @@ module Veritas
     # @api public
     def each
       return to_enum unless block_given?
-      return super if materialized?
-      each_tuple { |tuple| yield tuple }
+      tuples.each { |tuple| yield tuple }
       self
     end
 
@@ -226,19 +225,17 @@ module Veritas
       end
     end
 
-    # Yield each tuple in the result
+    # Return a list of tuples to iterate over
     #
-    # @yield [tuple]
-    #
-    # @yieldparam [Tuple] tuple
-    #   each tuple in the results
-    #
-    # @return [undefined]
+    # @return [#each]
     #
     # @api private
-    def each_tuple
-      DECORATED_CLASS.new(header, adapter.read(relation)).each do |tuple|
-        yield tuple
+    def tuples
+      relation = self.relation
+      if materialized?
+        relation
+      else
+        DECORATED_CLASS.new(header, adapter.read(relation))
       end
     end
 
