@@ -110,6 +110,24 @@ module Veritas
       binary_operation(__method__, other, Algebra::Product)
     end
 
+    # Return the union between relations
+    #
+    # @example
+    #   union = gateway.union(other)
+    #
+    # @param [Relation] other
+    #   the other relation to find the union with
+    #
+    # @return [RelationGateway]
+    #   return a gateway if the adapters are equal
+    # @return [Algebra::Union]
+    #   return a normal union when the adapters are not equal
+    #
+    # @api public
+    def union(other)
+      binary_operation(__method__, other, Algebra::Union)
+    end
+
     # Test if the method is supported on this object
     #
     # @param [Symbol] method
