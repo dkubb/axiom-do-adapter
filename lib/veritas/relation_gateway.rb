@@ -146,6 +146,24 @@ module Veritas
       binary_operation(__method__, other, Algebra::Intersection)
     end
 
+    # Return the diferrence between relations
+    #
+    # @example
+    #   difference = gateway.difference(other)
+    #
+    # @param [Relation] other
+    #   the other relation to find the difference with
+    #
+    # @return [RelationGateway]
+    #   return a gateway if the adapters are equal
+    # @return [Algebra::Difference]
+    #   return a normal dfference when the adapters are not equal
+    #
+    # @api public
+    def difference(other)
+      binary_operation(__method__, other, Algebra::Difference)
+    end
+
     # Test if the method is supported on this object
     #
     # @param [Symbol] method
