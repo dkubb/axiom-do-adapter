@@ -90,7 +90,7 @@ module Veritas
     # @api public
     def join(other)
       if other.respond_to?(:adapter) && adapter.eql?(other.adapter)
-        method_missing(__method__, other.relation)
+        forward(__method__, other.relation)
       else
         Algebra::Join.new(self, other)
       end
