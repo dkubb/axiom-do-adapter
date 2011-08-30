@@ -3,13 +3,13 @@
 module Veritas
 
   # A relation backed by an adapter
-  class RelationGateway
-    include Enumerable, Immutable
+  class RelationGateway < Relation
 
-    DECORATED_CLASS = Relation
+    DECORATED_CLASS = superclass
 
     # remove methods so they can be proxied
-    undef_method :drop, :extend, :sort_by, :take
+    undef_method *DECORATED_CLASS.public_instance_methods(false)
+    undef_method :project, :remove, :rename, :restrict, :sort_by, :reverse, :drop, :take, :extend
 
     # The adapter the gateway will use to fetch results
     #
