@@ -52,7 +52,7 @@ describe Adapter::DataObjects::Statement, '#each' do
       relation.should_receive(:header)
     end
 
-    it { should equal(object) }
+    it_should_behave_like 'a command method'
 
     it 'yields each row' do
       expect { subject }.to change { yields.dup }.

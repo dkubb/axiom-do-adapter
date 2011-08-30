@@ -46,8 +46,7 @@ describe Adapter::DataObjects, '#read' do
   end
 
   it_should_behave_like 'it uses the data_objects driver'
-
-  it { should equal(object) }
+  it_should_behave_like 'a command method'
 
   it 'yields each row' do
     expect { subject }.to change { yields.dup }.

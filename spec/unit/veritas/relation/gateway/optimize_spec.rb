@@ -14,7 +14,7 @@ describe Relation::Gateway, '#optimize' do
     relation.stub!(:optimize).and_return(relation)
   end
 
-  it { should equal(object) }
+  it_should_behave_like 'a command method'
 
   it 'forwards the message to relation#optimize' do
     relation.should_receive(:optimize).with(no_args)
