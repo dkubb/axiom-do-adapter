@@ -29,8 +29,6 @@ shared_examples_for 'it uses the data_objects driver' do
 end
 
 describe Adapter::DataObjects, '#read' do
-  subject { object.read(relation) { |row| yields << row } }
-
   let(:uri)       { stub                     }
   let(:object)    { described_class.new(uri) }
   let(:relation)  { mock('Relation')         }
@@ -45,17 +43,28 @@ describe Adapter::DataObjects, '#read' do
     described_class::Statement.stub!(:new).and_return(statement)
   end
 
-  it_should_behave_like 'it uses the data_objects driver'
-  it_should_behave_like 'a command method'
+  context 'with a block' do
+    subject { object.read(relation) { |row| yields << row } }
 
-  it 'yields each row' do
-    expect { subject }.to change { yields.dup }.
-      from([]).
-      to(rows)
+
+    it_should_behave_like 'it uses the data_objects driver'
+    it_should_behave_like 'a command method'
+
+    it 'yields each row' do
+      expect { subject }.to change { yields.dup }.
+        from([]).
+        to(rows)
+    end
+
+    it 'initializes a statement' do
+      described_class::Statement.should_receive(:new).with(connection, relation).and_return(statement)
+      subject
+    end
   end
 
-  it 'initializes a statement' do
-    described_class::Statement.should_receive(:new).with(connection, relation).and_return(statement)
-    subject
+  context 'without a block' do
+    subject { object.read(relation) }
+
+    it { should be_instance_of(to_enum.class) }
   end
 end

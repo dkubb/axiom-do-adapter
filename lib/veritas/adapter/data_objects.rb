@@ -38,6 +38,7 @@ module Veritas
       #
       # @api public
       def read(relation)
+        return to_enum(__method__, relation) unless block_given?
         connection = ::DataObjects::Connection.new(@uri)
         Statement.new(connection, relation).each { |row| yield row }
         self
