@@ -14,8 +14,8 @@ describe Relation::Gateway, '#materialize' do
   let(:materialized) { mock('Materialized')                                                                    }
 
   before do
-    Relation.stub!(:new).and_return(stub.as_null_object)
     Relation::Materialized.stub!(:new).and_return(materialized)
+    Relation.stub!(:new).and_return(stub.as_null_object)
   end
 
   it { should equal(materialized) }
