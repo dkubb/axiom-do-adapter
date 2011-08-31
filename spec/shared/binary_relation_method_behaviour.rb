@@ -28,13 +28,8 @@ shared_examples_for 'a binary relation method' do
 
     it { should equal(binary_relation) }
 
-    it 'initializes the binary operation with the gateway' do
-      factory.should_receive(:new).with(object, anything)
-      subject
-    end
-
-    it 'initializes the binary operation with the other gateway' do
-      factory.should_receive(:new).with(anything, other)
+    it 'initializes the binary operation with the gateways' do
+      factory.should_receive(:new).with(object, other)
       subject
     end
   end
@@ -48,13 +43,8 @@ shared_examples_for 'a binary relation method' do
 
     it { should equal(binary_relation) }
 
-    it 'initializes the binary operation with the gateway' do
-      factory.should_receive(:new).with(object, anything)
-      subject
-    end
-
-    it 'initializes the binary opetation with the other relation' do
-      factory.should_receive(:new).with(anything, other)
+    it 'initializes the binary operation with the gateway and other relation' do
+      factory.should_receive(:new).with(object, other)
       subject
     end
   end

@@ -14,13 +14,8 @@ shared_examples_for 'a unary relation method' do
     subject
   end
 
-  it 'initializes the new gateway with the adapter' do
-    described_class.should_receive(:new).with(adapter, anything)
-    subject
-  end
-
-  it 'initializes the new gateway with the response' do
-    described_class.should_receive(:new).with(anything, response)
+  it 'initializes the new gateway with the adapter and response' do
+    described_class.should_receive(:new).with(adapter, response)
     subject
   end
 end

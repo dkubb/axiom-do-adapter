@@ -20,18 +20,8 @@ describe Relation::Gateway, '#materialize' do
 
   it { should equal(materialized) }
 
-  it 'initializes the materialized relation with the header' do
-    Relation::Materialized.should_receive(:new).with(header, anything, anything)
-    subject
-  end
-
-  it 'initializes the materialized relation with the tuples' do
-    Relation::Materialized.should_receive(:new).with(anything, [], anything)
-    subject
-  end
-
-  it 'initializes the materialized relation with the directions' do
-    Relation::Materialized.should_receive(:new).with(anything, anything, directions)
+  it 'initializes the materialized relation with the header, tuples and directions' do
+    Relation::Materialized.should_receive(:new).with(header, [], directions)
     subject
   end
 end

@@ -41,13 +41,8 @@ describe Relation::Gateway, '#each' do
       subject
     end
 
-    it 'passes in the relation header to the wrapper constructor' do
-      Relation.should_receive(:new).with(header, anything)
-      subject
-    end
-
-    it 'passes in the adapter reader to the wrapper constructor' do
-      Relation.should_receive(:new).with(anything, reader)
+    it 'passes in the relation header and reader to the wrapper constructor' do
+      Relation.should_receive(:new).with(header, reader)
       subject
     end
   end
