@@ -239,11 +239,22 @@ module Veritas
       #
       # @api private
       def binary_operation(method, other, factory)
-        if other.respond_to?(:adapter) && adapter.eql?(other.adapter)
+        if same_adapter?(other)
           forward(method, other.relation)
         else
           factory.new(self, other)
         end
+      end
+
+      # Test if the other object uses the same adapter
+      #
+      # @param [Gateway, Relation] other
+      #
+      # @return [Boolean]
+      #
+      # @api private
+      def same_adapter?(other)
+        other.respond_to?(:adapter) && adapter.eql?(other.adapter)
       end
 
     end # class Gateway
