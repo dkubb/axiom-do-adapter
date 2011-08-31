@@ -152,6 +152,50 @@ module Veritas
         binary_operation(__method__, other, Algebra::Difference)
       end
 
+      # Return a summarized relation
+      #
+      # @example with no arguments
+      #   summarization = gateway.summarize do |context|
+      #     context.add(:count, context[:id].count)
+      #   end
+      #
+      # @example with a relation
+      #   summarization = gateway.summarize(relation) do |context|
+      #     context.add(:count, context[:id].count)
+      #   end
+      #
+      # @example with a header
+      #   summarization = gateway.summarize([ :name ]) do |context|
+      #     context.add(:count, context[:id].count)
+      #   end
+      #
+      # @example with another gateway
+      #   summarization = gateway.summarize(other_gateway) do |context|
+      #     context.add(:count, context[:id].count)
+      #   end
+      #
+      # @param [Gateway, Relation, Header, #to_ary] summarize_with
+      #
+      # @yield [function]
+      #   Evaluate a summarization function
+      #
+      # @yieldparam [Evaluator::Context] context
+      #   the context to evaluate the function within
+      #
+      # @return [Gateway]
+      #   return a gateway if the adapters are equal, or there is no adapter
+      # @return [Algebra::Summarization]
+      #   return a normal summarization when the adapters are not equal
+      #
+      # @api public
+      def summarize(summarize_with = TABLE_DEE, &block)
+        if summarize_merge?(summarize_with)
+          summarize_merge(summarize_with, &block)
+        else
+          summarize_split(summarize_with, &block)
+        end
+      end
+
       # Test if the method is supported on this object
       #
       # @param [Symbol] method
@@ -255,6 +299,44 @@ module Veritas
       # @api private
       def same_adapter?(other)
         other.respond_to?(:adapter) && adapter.eql?(other.adapter)
+      end
+
+      # Test if the summarize_with object can be merged into the summarization
+      #
+      # @param [Gateway, Relation, Header] summarize_with
+      #
+      # @return [Boolean]
+      #
+      # @api private
+      def summarize_merge?(summarize_with)
+        !summarize_with.respond_to?(:header) ||
+        summarize_with.equal?(TABLE_DEE)     ||
+        same_adapter?(summarize_with)
+      end
+
+      # Merge the summarize_with into the summarization
+      #
+      # @param [Gateway, Relation, Header] summarize_with
+      #
+      # @return [Gateway]
+      #
+      # @api private
+      def summarize_merge(summarize_with, &block)
+        summarize_with = summarize_with.relation if summarize_with.respond_to?(:relation)
+        forward(:summarize, summarize_with, &block)
+      end
+
+      # Split the summarize_with into a separate relation, wrapped in a summarization
+      #
+      # @param [Gateway, Relation, Header] summarize_with
+      #
+      # @return [Algebra::Summarization]
+      #
+      # @api private
+      def summarize_split(summarize_with, &block)
+        # evaluate the gateway, then summarize with the provided relation
+        context = Evaluator::Context.new(header - summarize_with.header, &block)
+        Algebra::Summarization.new(self, summarize_with, context.functions)
       end
 
     end # class Gateway
