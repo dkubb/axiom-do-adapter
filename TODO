@@ -1,3 +1,2 @@
 * Add other relation methods to Relation::Gateway:
-  * #summarize
   * #join w/block (theta-join)
