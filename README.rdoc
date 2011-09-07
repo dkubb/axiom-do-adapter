@@ -2,7 +2,7 @@
 
 Use Veritas relations with an RDBMS
 
-http://travis-ci.org/dkubb/veritas-do-adapter.png
+{<img src="https://secure.travis-ci.org/dkubb/veritas-do-adapter.png" />}[http://travis-ci.org/dkubb/veritas-do-adapter]
 
 == Note on Patches/Pull Requests
 
