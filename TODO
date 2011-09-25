@@ -1,2 +1,0 @@
-* Add other relation methods to Relation::Gateway:
-  * #join w/block (theta-join)
