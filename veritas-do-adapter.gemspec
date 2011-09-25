@@ -4,17 +4,17 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{veritas-do-adapter}
+  s.name = "veritas-do-adapter"
   s.version = "0.0.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Dan Kubb}]
-  s.date = %q{2011-08-31}
-  s.description = %q{Use Veritas relations with an RDBMS}
-  s.email = %q{dan.kubb@gmail.com}
+  s.authors = ["Dan Kubb"]
+  s.date = "2011-09-25"
+  s.description = "Use Veritas relations with an RDBMS"
+  s.email = "dan.kubb@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE",
-    "README.rdoc",
+    "README.md",
     "TODO"
   ]
   s.files = [
@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
     "Gemfile",
     "Guardfile",
     "LICENSE",
-    "README.rdoc",
+    "README.md",
     "Rakefile",
     "TODO",
     "config/flay.yml",
@@ -83,10 +83,10 @@ Gem::Specification.new do |s|
     "tasks/yard.rake",
     "veritas-do-adapter.gemspec"
   ]
-  s.homepage = %q{https://github.com/dkubb/veritas-do-adapter}
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.9}
-  s.summary = %q{Vertias DataObjects adapter}
+  s.homepage = "https://github.com/dkubb/veritas-do-adapter"
+  s.require_paths = ["lib"]
+  s.rubygems_version = "1.8.10"
+  s.summary = "Vertias DataObjects adapter"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
