@@ -67,17 +67,36 @@ module Veritas
       # @example natural join
       #   join = relation.join(other)
       #
+      # @example theta-join using a block
+      #   join = relation.join(other) { |r| r.a.gte(r.b) }
+      #
       # @param [Relation] other
       #   the other relation to join
+      #
+      # @yield [relation]
+      #   optional block to restrict the tuples with
+      #
+      # @yieldparam [Relation] relation
+      #   the context to evaluate the restriction with
+      #
+      # @yieldreturn [Function, #call]
+      #   predicate to restrict the tuples with
       #
       # @return [Gateway]
       #   return a gateway if the adapters are equal
       # @return [Algebra::Join]
       #   return a normal join when the adapters are not equal
+      # @return [Algebra::Restriction]
+      #   return a normal restriction when the adapters are not equal
+      #   for a theta-join
       #
       # @api public
-      def join(other)
-        binary_operation(__method__, other, Algebra::Join)
+      def join(other, &block)
+        if block
+          join(other).restrict(&block)
+        else
+          binary_operation(__method__, other, Algebra::Join)
+        end
       end
 
       # Return a relation that is the cartesian product of two relations
