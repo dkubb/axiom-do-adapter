@@ -91,9 +91,9 @@ module Veritas
       #   for a theta-join
       #
       # @api public
-      def join(other, &block)
-        if block
-          join(other).restrict(&block)
+      def join(other)
+        if block_given?
+          super
         else
           binary_operation(__method__, other, Algebra::Join)
         end
