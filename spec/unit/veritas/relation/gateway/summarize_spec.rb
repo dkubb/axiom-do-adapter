@@ -28,11 +28,13 @@ describe Relation::Gateway, '#summarize' do
       subject
     end
 
-    it 'forwards the block to relation#summarize' do
-      relation.stub!(:summarize) do |_summarize_with, proc|
-        proc.should equal(block)
+    unless testing_block_passing_broken?
+      it 'forwards the block to relation#summarize' do
+        relation.stub!(:summarize) do |_summarize_with, proc|
+          proc.should equal(block)
+        end
+        subject
       end
-      subject
     end
 
     it 'initializes the gateway with the adapter and summarization' do
@@ -60,11 +62,13 @@ describe Relation::Gateway, '#summarize' do
       subject
     end
 
-    it 'forwards the block to relation#summarize' do
-      relation.stub!(:summarize) do |_summarize_with, proc|
-        proc.should equal(block)
+    unless testing_block_passing_broken?
+      it 'forwards the block to relation#summarize' do
+        relation.stub!(:summarize) do |_summarize_with, proc|
+          proc.should equal(block)
+        end
+        subject
       end
-      subject
     end
 
     it 'initializes the gateway with the adapter and summarization' do
@@ -94,11 +98,13 @@ describe Relation::Gateway, '#summarize' do
       subject
     end
 
-    it 'forwards the block to relation#summarize' do
-      relation.stub!(:summarize) do |_summarize_with, proc|
-        proc.should equal(block)
+    unless testing_block_passing_broken?
+      it 'forwards the block to relation#summarize' do
+        relation.stub!(:summarize) do |_summarize_with, proc|
+          proc.should equal(block)
+        end
+        subject
       end
-      subject
     end
 
     it 'initializes the gateway with the adapter and summarization' do

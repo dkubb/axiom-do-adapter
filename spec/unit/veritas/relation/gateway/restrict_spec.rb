@@ -20,8 +20,10 @@ describe Relation::Gateway, '#restrict' do
     subject
   end
 
-  it 'forwards the block to relation#restrict' do
-    relation.stub!(:restrict) { |_args, proc| proc.should equal(block) }
-    subject
+  unless testing_block_passing_broken?
+    it 'forwards the block to relation#restrict' do
+      relation.stub!(:restrict) { |_args, proc| proc.should equal(block) }
+      subject
+    end
   end
 end

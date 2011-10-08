@@ -20,8 +20,10 @@ describe Relation::Gateway, '#extend' do
     subject
   end
 
-  it 'forwards the block to relation#extend' do
-    relation.stub!(:extend) { |_args, proc| proc.should equal(block) }
-    subject
+  unless testing_block_passing_broken?
+    it 'forwards the block to relation#extend' do
+      relation.stub!(:extend) { |_args, proc| proc.should equal(block) }
+      subject
+    end
   end
 end
