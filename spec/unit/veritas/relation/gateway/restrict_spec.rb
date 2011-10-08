@@ -11,7 +11,7 @@ describe Relation::Gateway, '#restrict' do
   let(:response) { mock('New Relation', :kind_of? => true) }
   let!(:object)  { described_class.new(adapter, relation)  }
   let(:args)     { stub                                    }
-  let(:block)    { proc {}                                 }
+  let(:block)    { lambda { |context| }                    }
 
   it_should_behave_like 'a unary relation method'
 

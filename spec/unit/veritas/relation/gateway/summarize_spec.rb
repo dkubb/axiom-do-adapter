@@ -8,7 +8,7 @@ describe Relation::Gateway, '#summarize' do
   let(:adapter)       { mock('Adapter')                               }
   let(:relation)      { mock('Relation', :summarize => summarization) }
   let!(:object)       { described_class.new(adapter, relation)        }
-  let(:block)         { proc {}                                       }
+  let(:block)         { lambda { |context| }                          }
 
   context 'with no arguments' do
     subject { object.summarize(&block) }
