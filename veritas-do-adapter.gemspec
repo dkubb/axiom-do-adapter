@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = "2011-10-04"
+  s.date = "2011-11-03"
   s.description = "Use Veritas relations with an RDBMS"
   s.email = "dan.kubb@gmail.com"
   s.extra_rdoc_files = [
@@ -46,6 +46,7 @@ Gem::Specification.new do |s|
     "spec/shared/unary_relation_method_behaviour.rb",
     "spec/spec.opts",
     "spec/spec_helper.rb",
+    "spec/support/example_group_methods.rb",
     "spec/unit/veritas/adapter/data_objects/class_methods/new_spec.rb",
     "spec/unit/veritas/adapter/data_objects/read_spec.rb",
     "spec/unit/veritas/adapter/data_objects/statement/class_methods/new_spec.rb",
@@ -85,7 +86,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = "https://github.com/dkubb/veritas-do-adapter"
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.10"
+  s.rubygems_version = "1.8.11"
   s.summary = "Vertias DataObjects adapter"
 
   if s.respond_to? :specification_version then
