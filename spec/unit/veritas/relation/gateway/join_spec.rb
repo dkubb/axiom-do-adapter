@@ -21,23 +21,23 @@ describe Relation::Gateway, '#join' do
     let(:other_relation) { mock('Other Relation')                       }
     let(:other)          { described_class.new(adapter, other_relation) }
     let(:gateway)        { mock('Other Gateway')                        }
-    let(:product)        { mock('Product', :restrict => gateway)        }
+    let(:join)           { mock('Join', :restrict => gateway)           }
     let(:yields)         { []                                           }
 
     before do
-      relation.stub!(:product).and_return(product)
+      Algebra::Join.stub!(:new).with(relation, other_relation).and_return(join)
     end
 
     it { should equal(gateway) }
 
-    it 'passes the other relation to the product operation' do
-      relation.should_receive(:product).with(other_relation)
+    it 'passes the relations to the join constructor' do
+      Algebra::Join.should_receive(:new).with(relation, other_relation)
       subject
     end
 
-    it 'passes the block to the product relation' do
+    it 'passes the block to the join relation' do
       context = mock('Context')
-      product.should_receive(:restrict).and_yield(context)
+      join.should_receive(:restrict).and_yield(context)
       expect { subject }.to change { yields.dup }.from([]).to([ context ])
     end
   end
