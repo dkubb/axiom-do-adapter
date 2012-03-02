@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-source :rubygems
+source 'https://rubygems.org'
 
 gem 'data_objects',          '~> 0.10.6', :git => 'git://github.com/datamapper/do.git'
 gem 'veritas',               '~> 0.0.7',  :git => 'git://github.com/dkubb/veritas.git'
