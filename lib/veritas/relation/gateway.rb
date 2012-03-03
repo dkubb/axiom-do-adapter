@@ -18,7 +18,7 @@ module Veritas
       #
       # @api private
       attr_reader :adapter
-      protected :adapter
+      protected :adapter unless RUBY_VERSION == '2.0.0'
 
       # The relation the gateway will use to generate SQL
       #
@@ -26,7 +26,7 @@ module Veritas
       #
       # @api private
       attr_reader :relation
-      protected :relation
+      protected :relation unless RUBY_VERSION == '2.0.0'
 
       # Initialize a Gateway
       #
