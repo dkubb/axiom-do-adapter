@@ -79,7 +79,9 @@ UncommunicativeVariableName:
   - !ruby/regexp /[0-9]$/
   - !ruby/regexp /[A-Z]/
 SimulatedPolymorphism:
-  exclude: []
+  exclude: [
+    'Veritas::Relation::Gateway'
+  ]
   enabled: true
   max_ifs: 1
 DataClump:
