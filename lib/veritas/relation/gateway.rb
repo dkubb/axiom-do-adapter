@@ -18,7 +18,7 @@ module Veritas
       #
       # @api private
       attr_reader :adapter
-      protected :adapter unless RUBY_VERSION == '2.0.0'
+      protected :adapter
 
       # The relation the gateway will use to generate SQL
       #
@@ -26,7 +26,7 @@ module Veritas
       #
       # @api private
       attr_reader :relation
-      protected :relation unless RUBY_VERSION == '2.0.0'
+      protected :relation
 
       # Initialize a Gateway
       #
@@ -309,6 +309,17 @@ module Veritas
         end
       end
 
+      # Test if the other object is a Gateway
+      #
+      # @param [Gateway, Relation] other
+      #
+      # @return [Boolean]
+      #
+      # @api private
+      def gateway?(other)
+        other.kind_of?(Gateway)
+      end
+
       # Test if the other object uses the same adapter
       #
       # @param [Gateway, Relation] other
@@ -317,7 +328,7 @@ module Veritas
       #
       # @api private
       def same_adapter?(other)
-        other.respond_to?(:adapter) && adapter.eql?(other.adapter)
+        gateway?(other) && adapter.eql?(other.adapter)
       end
 
       # Test if the summarize_with object can be merged into the summarization
@@ -341,7 +352,7 @@ module Veritas
       #
       # @api private
       def summarize_merge(summarize_with, &block)
-        summarize_with = summarize_with.relation if summarize_with.respond_to?(:relation)
+        summarize_with = summarize_with.relation if gateway?(summarize_with)
         forward(:summarize, summarize_with, &block)
       end
 
