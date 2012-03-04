@@ -8,7 +8,7 @@ UncommunicativeParameterName:
   - !ruby/regexp /[0-9]$/
   - !ruby/regexp /[A-Z]/
 LargeClass:
-  max_methods: 18
+  max_methods: 19
   exclude: []
   enabled: true
   max_instance_variables: 5
@@ -29,6 +29,7 @@ FeatureEnvy:
   exclude: [
     'Veritas::Adapter::DataObjects::Statement#each_row',
     'Veritas::Relation::Gateway#same_adapter?',
+    'Veritas::Relation::Gateway#gateway?',
     'Veritas::Relation::Gateway#summarize_merge?',
     'Veritas::Relation::Gateway#summarize_merge'
   ]
