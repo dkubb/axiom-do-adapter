@@ -7,11 +7,10 @@ gem 'veritas',               '~> 0.0.7',  :github => 'dkubb/veritas'
 gem 'veritas-sql-generator', '~> 0.0.7',  :github => 'dkubb/veritas-sql-generator'
 
 group :development do
-  gem 'backports', '~> 2.3.0'
-  gem 'jeweler',   '~> 1.6.4'
-  gem 'rake',      '~> 0.9.2'
-  gem 'rspec',     '~> 1.3.2'
-  gem 'yard',      '~> 0.7.2'
+  gem 'jeweler', '~> 1.8.3'
+  gem 'rake',    '~> 0.9.2'
+  gem 'rspec',   '~> 1.3.2'
+  gem 'yard',    '~> 0.7.2'
 end
 
 group :guard do
