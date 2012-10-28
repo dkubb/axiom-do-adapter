@@ -6,7 +6,7 @@ module Veritas
 
       # Executes generated SQL statements
       class Statement
-        include Enumerable, Immutable
+        include Enumerable, Adamantium
 
         # Initialize a statement
         #
@@ -24,6 +24,7 @@ module Veritas
           @connection = connection
           @relation   = relation
           @visitor    = visitor
+          freeze
         end
 
         # Iterate over each row in the results
