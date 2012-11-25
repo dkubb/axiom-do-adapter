@@ -100,7 +100,8 @@ module Veritas
           @relation.header.map { |attribute| attribute.class.primitive }
         end
 
-        memoize :to_s, :command
+        memoize :to_s
+        memoize :command, :freezer => :flat
 
       end # class Statement
     end # class DataObjects
