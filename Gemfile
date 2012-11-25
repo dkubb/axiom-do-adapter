@@ -2,9 +2,9 @@
 
 source 'https://rubygems.org'
 
-gem 'data_objects',          '~> 0.10.6', :github => 'datamapper/do'
-gem 'veritas',               '~> 0.0.7',  :github => 'dkubb/veritas'
-gem 'veritas-sql-generator', '~> 0.0.7',  :github => 'dkubb/veritas-sql-generator'
+gem 'data_objects',          '~> 0.10.10', :github => 'datamapper/do'
+gem 'veritas',               '~> 0.0.7',   :github => 'dkubb/veritas'
+gem 'veritas-sql-generator', '~> 0.0.7',   :github => 'dkubb/veritas-sql-generator'
 
 group :development do
   gem 'jeweler', '~> 1.8.3'
