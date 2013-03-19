@@ -30,7 +30,7 @@ describe Relation::Gateway, '#summarize' do
 
     unless testing_block_passing_broken?
       it 'forwards the block to relation#summarize' do
-        relation.stub!(:summarize) do |_summarize_with, proc|
+        relation.should_receive(:summarize) do |_summarize_with, &proc|
           proc.should equal(block)
         end
         subject
@@ -64,7 +64,7 @@ describe Relation::Gateway, '#summarize' do
 
     unless testing_block_passing_broken?
       it 'forwards the block to relation#summarize' do
-        relation.stub!(:summarize) do |_summarize_with, proc|
+        relation.should_receive(:summarize) do |_summarize_with, &proc|
           proc.should equal(block)
         end
         subject
@@ -100,7 +100,7 @@ describe Relation::Gateway, '#summarize' do
 
     unless testing_block_passing_broken?
       it 'forwards the block to relation#summarize' do
-        relation.stub!(:summarize) do |_summarize_with, proc|
+        relation.should_receive(:summarize) do |_summarize_with, &proc|
           proc.should equal(block)
         end
         subject
