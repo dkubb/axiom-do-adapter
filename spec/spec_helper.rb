@@ -22,7 +22,7 @@ if ENV['COVERAGE'] == 'true'
   end
 end
 
-require 'veritas-sql-generator'
+require 'veritas-do-adapter'
 
 include Veritas
 
