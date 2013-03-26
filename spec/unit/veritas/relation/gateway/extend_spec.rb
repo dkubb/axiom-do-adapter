@@ -22,7 +22,7 @@ describe Relation::Gateway, '#extend' do
 
   unless testing_block_passing_broken?
     it 'forwards the block to relation#extend' do
-      relation.stub!(:extend) { |_args, proc| proc.should equal(block) }
+      relation.should_receive(:extend) { |&proc| proc.should equal(block) }
       subject
     end
   end

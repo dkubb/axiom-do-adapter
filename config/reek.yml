@@ -26,13 +26,12 @@ LongParameterList:
   enabled: true
   overrides: {}
 FeatureEnvy:
-  exclude: [
-    'Veritas::Adapter::DataObjects::Statement#each_row',
-    'Veritas::Relation::Gateway#same_adapter?',
-    'Veritas::Relation::Gateway#gateway?',
-    'Veritas::Relation::Gateway#summarize_merge?',
-    'Veritas::Relation::Gateway#summarize_merge'
-  ]
+  exclude:
+    - Veritas::Adapter::DataObjects::Statement#each_row
+    - Veritas::Relation::Gateway#same_adapter?
+    - Veritas::Relation::Gateway#gateway?
+    - Veritas::Relation::Gateway#summarize_merge?
+    - Veritas::Relation::Gateway#summarize_merge
   enabled: true
 ClassVariable:
   exclude: []
@@ -80,9 +79,8 @@ UncommunicativeVariableName:
   - !ruby/regexp /[0-9]$/
   - !ruby/regexp /[A-Z]/
 SimulatedPolymorphism:
-  exclude: [
-    'Veritas::Relation::Gateway'
-  ]
+  exclude:
+    - Veritas::Relation::Gateway
   enabled: true
   max_ifs: 1
 DataClump:
@@ -97,3 +95,6 @@ LongYieldList:
   max_params: 2
   exclude: []
   enabled: true
+NilCheck:
+  enabled: true
+  exclude: []

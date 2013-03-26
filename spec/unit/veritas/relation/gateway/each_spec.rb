@@ -51,14 +51,16 @@ describe Relation::Gateway, '#each' do
     before do
       relation.stub!(:materialized?).and_return(true)
 
+      tuple = self.tuple
+
       # I do not know a better way to mock this behaviour out and
       # I'm pretty sure that rspec does not provide Enumerator helpers
-      relation.stub!(:each) do |*args|
-        if args.empty?
-          relation.to_enum
+      relation.define_singleton_method(:each) do |&block|
+        if block
+          block.call(tuple)
+          self
         else
-          args.first.call(tuple)
-          relation
+          to_enum
         end
       end
     end

@@ -22,7 +22,7 @@ describe Relation::Gateway, '#restrict' do
 
   unless testing_block_passing_broken?
     it 'forwards the block to relation#restrict' do
-      relation.stub!(:restrict) { |_args, proc| proc.should equal(block) }
+      relation.should_receive(:restrict) { |_args, &proc| proc.should equal(block) }
       subject
     end
   end
