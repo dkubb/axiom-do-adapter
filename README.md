@@ -1,10 +1,22 @@
-# Veritas DataObjects Adapter
+veritas-do-adapter
+==================
 
-Use Veritas relations with an RDBMS
+Use Veritas relations with an SQL based RDBMS
 
-[![Build Status](https://secure.travis-ci.org/dkubb/veritas-do-adapter.png)](http://travis-ci.org/dkubb/veritas-do-adapter)
+[![Gem Version](https://badge.fury.io/rb/veritas-do-adapter.png)][gem]
+[![Build Status](https://secure.travis-ci.org/dkubb/veritas-do-adapter.png?branch=master)][travis]
+[![Dependency Status](https://gemnasium.com/dkubb/veritas-do-adapter.png)][gemnasium]
+[![Code Climate](https://codeclimate.com/github/dkubb/veritas-do-adapter.png)][codeclimate]
+[![Coverage Status](https://coveralls.io/repos/dkubb/veritas-do-adapter/badge.png?branch=master)][coveralls]
 
-## Note on Patches/Pull Requests
+[gem]: https://rubygems.org/gems/veritas-do-adapter
+[travis]: https://travis-ci.org/dkubb/veritas-do-adapter
+[gemnasium]: https://gemnasium.com/dkubb/veritas-do-adapter
+[codeclimate]: https://codeclimate.com/github/dkubb/veritas-do-adapter
+[coveralls]: https://coveralls.io/r/dkubb/veritas-do-adapter
+
+Note on Patches/Pull Requests
+-----------------------------
 
 * If you want your code merged into the mainline, please discuss the proposed changes with me before doing any work on it. This library is still in early development, and it may not always be clear the direction it is going. Some features may not be appropriate yet, may need to be deferred until later when the foundation for them is laid, or may be more applicable in a plugin.
 * Fork the project.
@@ -16,6 +28,7 @@ Use Veritas relations with an RDBMS
   metrics for the code to be merged.
 * Send me a pull request. Bonus points for topic branches.
 
-## Copyright
+Copyright
+---------
 
-Copyright &copy; 2011 Dan Kubb. See LICENSE for details.
+Copyright &copy; 2011-2013 Dan Kubb. See LICENSE for details.
