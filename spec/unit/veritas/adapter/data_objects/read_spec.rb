@@ -3,31 +3,6 @@
 require 'spec_helper'
 require 'veritas/adapter/data_objects'
 
-shared_examples_for 'it uses the data_objects driver' do
-  let(:connection) { mock('Connection', :close => nil) }
-
-  before do
-    DataObjects::Connection.stub!(:new).and_return(connection)
-  end
-
-  it 'opens a connection' do
-    DataObjects::Connection.should_receive(:new).with(uri).and_return(connection)
-    subject
-  end
-
-  it 'closes a connection' do
-    connection.should_receive(:close).with(no_args)
-    subject
-  end
-
-  it 'does not close a connection if the constructor throws an exception' do
-    mock_exception = Class.new(Exception)
-    DataObjects::Connection.should_receive(:new).and_raise(mock_exception)
-    connection.should_not_receive(:close)
-    expect { subject }.to raise_error(mock_exception)
-  end
-end
-
 describe Adapter::DataObjects, '#read' do
   let(:uri)       { stub                     }
   let(:object)    { described_class.new(uri) }
@@ -46,9 +21,30 @@ describe Adapter::DataObjects, '#read' do
   context 'with a block' do
     subject { object.read(relation) { |row| yields << row } }
 
+    let(:connection) { mock('Connection', :close => nil) }
 
-    it_should_behave_like 'it uses the data_objects driver'
+    before do
+      DataObjects::Connection.stub!(:new).and_return(connection)
+    end
+
     it_should_behave_like 'a command method'
+
+    it 'opens a connection' do
+      DataObjects::Connection.should_receive(:new).with(uri).and_return(connection)
+      subject
+    end
+
+    it 'closes a connection' do
+      connection.should_receive(:close).with(no_args)
+      subject
+    end
+
+    it 'does not close a connection if the constructor throws an exception' do
+      mock_exception = Class.new(Exception)
+      DataObjects::Connection.should_receive(:new).and_raise(mock_exception)
+      connection.should_not_receive(:close)
+      expect { subject }.to raise_error(mock_exception)
+    end
 
     it 'yields each row' do
       expect { subject }.to change { yields.dup }.

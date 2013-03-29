@@ -22,7 +22,7 @@ describe Relation::Gateway, '#sort_by' do
 
   unless testing_block_passing_broken?
     it 'forwards the block to relation#sort_by' do
-      relation.stub!(:sort_by) { |_args, proc| proc.should equal(block) }
+      relation.should_receive(:sort_by) { |&proc| proc.should equal(block) }
       subject
     end
   end
