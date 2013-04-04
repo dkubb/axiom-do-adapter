@@ -2,7 +2,7 @@
 Attribute:
   enabled: true
   exclude:
-  - Veritas::Relation::Gateway
+  - Axiom::Relation::Gateway
 BooleanParameter:
   enabled: true
   exclude: []
@@ -25,17 +25,17 @@ DuplicateMethodCall:
 FeatureEnvy:
   enabled: true
   exclude:
-  - Veritas::Adapter::DataObjects::Statement#each_row
-  - Veritas::Relation::Gateway#gateway?
-  - Veritas::Relation::Gateway#summarize_merge?
+  - Axiom::Adapter::DataObjects::Statement#each_row
+  - Axiom::Relation::Gateway#gateway?
+  - Axiom::Relation::Gateway#summarize_merge?
 IrresponsibleModule:
   enabled: true
   exclude:
-  - Veritas::Relation
+  - Axiom::Relation
 LongParameterList:
   enabled: true
   exclude:
-  - Veritas::Relation::Gateway#binary_operation
+  - Axiom::Relation::Gateway#binary_operation
   max_params: 2
   overrides:
     initialize:
@@ -63,15 +63,15 @@ TooManyInstanceVariables:
 TooManyMethods:
   enabled: true
   exclude:
-  - Veritas::Relation::Gateway
+  - Axiom::Relation::Gateway
   max_methods: 10
 TooManyStatements:
   enabled: true
   exclude:
-  - Veritas::Adapter::DataObjects#read
-  - Veritas::Adapter::DataObjects::Statement#command
-  - Veritas::Relation::Gateway#forward
-  - Veritas::Relation::Gateway#tuples
+  - Axiom::Adapter::DataObjects#read
+  - Axiom::Adapter::DataObjects::Statement#command
+  - Axiom::Relation::Gateway#forward
+  - Axiom::Relation::Gateway#tuples
   - each
   max_statements: 2
 UncommunicativeMethodName:
@@ -111,5 +111,5 @@ UnusedParameters:
 UtilityFunction:
   enabled: true
   exclude:
-  - Veritas::Relation::Gateway#gateway?
+  - Axiom::Relation::Gateway#gateway?
   max_helper_calls: 0
