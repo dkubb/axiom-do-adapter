@@ -3,7 +3,10 @@
 module Axiom
   module Adapter
     class DataObjects
-      VERSION = '0.0.7'
+
+      # Gem version
+      VERSION = '0.1.0'.freeze
+
     end # class DataObjects
   end # module Adapter
 end # module Axiom
