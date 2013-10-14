@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.description = 'Use Axiom relations with an RDBMS'
   gem.summary     = 'Vertias DataObjects adapter'
   gem.homepage    = 'https://github.com/dkubb/axiom-do-adapter'
-  gem.licenses    = %w[MIT]
+  gem.license     = 'MIT'
 
   gem.require_paths    = %w[lib]
   gem.files            = `git ls-files`.split($/)
