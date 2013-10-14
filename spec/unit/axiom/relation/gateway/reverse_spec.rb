@@ -7,7 +7,7 @@ describe Relation::Gateway, '#reverse' do
   subject { object.reverse(args) }
 
   let(:adapter)  { double('Adapter')                         }
-  let(:relation) { double('Relation', :reverse => response)  }
+  let(:relation) { double('Relation', reverse: response)     }
   let(:response) { double('New Relation', :kind_of? => true) }
   let!(:object)  { described_class.new(adapter, relation)    }
   let(:args)     { double                                    }

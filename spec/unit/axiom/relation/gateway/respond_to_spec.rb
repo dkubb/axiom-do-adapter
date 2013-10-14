@@ -6,7 +6,7 @@ require 'axiom/relation/gateway'
 describe Relation::Gateway, '#respond_to?' do
   subject { object.respond_to?(method) }
 
-  let(:relation) { double('Relation', :header => double) }
+  let(:relation) { double('Relation', header: double)    }
   let(:object)   { described_class.new(double, relation) }
 
   context 'with an unknown method' do

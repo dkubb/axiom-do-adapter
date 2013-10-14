@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Spec
   module ExampleGroupMethods
     def testing_block_passing_broken?

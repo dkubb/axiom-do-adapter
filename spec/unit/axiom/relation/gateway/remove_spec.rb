@@ -7,7 +7,7 @@ describe Relation::Gateway, '#remove' do
   subject { object.remove(args) }
 
   let(:adapter)  { double('Adapter')                         }
-  let(:relation) { double('Relation', :remove => response)   }
+  let(:relation) { double('Relation', remove: response)      }
   let(:response) { double('New Relation', :kind_of? => true) }
   let!(:object)  { described_class.new(adapter, relation)    }
   let(:args)     { double                                    }

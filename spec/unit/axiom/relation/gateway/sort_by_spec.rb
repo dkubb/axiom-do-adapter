@@ -7,11 +7,11 @@ describe Relation::Gateway, '#sort_by' do
   subject { object.sort_by(args, &block) }
 
   let(:adapter)  { double('Adapter')                         }
-  let(:relation) { double('Relation', :sort_by => response)  }
+  let(:relation) { double('Relation', sort_by: response)     }
   let(:response) { double('New Relation', :kind_of? => true) }
   let!(:object)  { described_class.new(adapter, relation)    }
   let(:args)     { double                                    }
-  let(:block)    { lambda { |context| }                      }
+  let(:block)    { ->(context) { }                           }
 
   it_should_behave_like 'a unary relation method'
 

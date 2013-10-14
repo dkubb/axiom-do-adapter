@@ -73,9 +73,7 @@ module Axiom
         # @api private
         def each_row
           reader = command.execute_reader
-          while reader.next!
-            yield reader.values
-          end
+          yield reader.values while reader.next!
         ensure
           reader.close if reader
         end
@@ -101,7 +99,7 @@ module Axiom
         end
 
         memoize :to_s
-        memoize :command, :freezer => :flat
+        memoize :command, freezer: :flat
 
       end # class Statement
     end # class DataObjects

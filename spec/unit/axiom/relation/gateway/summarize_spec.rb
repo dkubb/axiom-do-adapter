@@ -4,11 +4,11 @@ require 'spec_helper'
 require 'axiom/relation/gateway'
 
 describe Relation::Gateway, '#summarize' do
-  let(:summarization) { double('Summarization', :kind_of? => true)      }
-  let(:adapter)       { double('Adapter')                               }
-  let(:relation)      { double('Relation', :summarize => summarization) }
-  let!(:object)       { described_class.new(adapter, relation)          }
-  let(:block)         { lambda { |context| }                            }
+  let(:summarization) { double('Summarization', :kind_of? => true)   }
+  let(:adapter)       { double('Adapter')                            }
+  let(:relation)      { double('Relation', summarize: summarization) }
+  let!(:object)       { described_class.new(adapter, relation)       }
+  let(:block)         { ->(context) { }                              }
 
   context 'with no arguments' do
     subject { object.summarize(&block) }
@@ -81,7 +81,7 @@ describe Relation::Gateway, '#summarize' do
     subject { object.summarize(other, &block) }
 
     let(:header)         { double('Header')                             }
-    let(:other_relation) { double('Other Relation', :header => header)  }
+    let(:other_relation) { double('Other Relation', header: header)     }
     let!(:other)         { described_class.new(adapter, other_relation) }
     let(:gateway)        { double('New Gateway')                        }
 
@@ -116,12 +116,12 @@ describe Relation::Gateway, '#summarize' do
   context 'with a relation' do
     subject { object.summarize(summarize_with, &block) }
 
-    let(:context_header)   { double('Context Header')                              }
-    let(:header)           { double('Header', :- => context_header)                }
-    let(:summarize_header) { double('Summarize With Header')                       }
-    let(:summarize_with)   { double('Other Relation', :header => summarize_header) }
-    let(:functions)        { double('Functions')                                   }
-    let(:context)          { double('Context', :functions => functions)            }
+    let(:context_header)   { double('Context Header')                           }
+    let(:header)           { double('Header', :- => context_header)             }
+    let(:summarize_header) { double('Summarize With Header')                    }
+    let(:summarize_with)   { double('Other Relation', header: summarize_header) }
+    let(:functions)        { double('Functions')                                }
+    let(:context)          { double('Context', functions: functions)            }
 
     before do
       allow(relation).to receive(:header).and_return(header)

@@ -21,7 +21,7 @@ describe Relation::Gateway, '#join' do
     let(:other_relation) { double('Other Relation')                     }
     let(:other)          { described_class.new(adapter, other_relation) }
     let(:gateway)        { double('Other Gateway')                      }
-    let(:join)           { double('Join', :restrict => gateway)         }
+    let(:join)           { double('Join', restrict: gateway)            }
     let(:yields)         { []                                           }
 
     before do
@@ -38,7 +38,7 @@ describe Relation::Gateway, '#join' do
     it 'passes the block to the join relation' do
       context = double('Context')
       expect(join).to receive(:restrict).and_yield(context)
-      expect { subject }.to change { yields.dup }.from([]).to([ context ])
+      expect { subject }.to change { yields.dup }.from([]).to([context])
     end
   end
 end

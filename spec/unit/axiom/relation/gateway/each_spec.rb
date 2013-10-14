@@ -31,9 +31,7 @@ describe Relation::Gateway, '#each' do
     it_should_behave_like 'an #each method'
 
     it 'yields each tuple' do
-      expect { subject }.to change { yields.dup }.
-        from([]).
-        to([ tuple ])
+      expect { subject }.to change { yields.dup }.from([]).to([tuple])
     end
 
     it 'passes in the relation to the adapter reader' do
@@ -68,9 +66,7 @@ describe Relation::Gateway, '#each' do
     it_should_behave_like 'an #each method'
 
     it 'yields each tuple' do
-      expect { subject }.to change { yields.dup }.
-        from([]).
-        to([ tuple ])
+      expect { subject }.to change { yields.dup }.from([]).to([tuple])
     end
 
     it 'does not create a reader' do

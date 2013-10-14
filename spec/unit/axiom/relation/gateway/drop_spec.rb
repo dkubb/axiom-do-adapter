@@ -7,7 +7,7 @@ describe Relation::Gateway, '#drop' do
   subject { object.drop(args) }
 
   let(:adapter)  { double('Adapter')                         }
-  let(:relation) { double('Relation', :drop => response)     }
+  let(:relation) { double('Relation', drop: response)        }
   let(:response) { double('New Relation', :kind_of? => true) }
   let!(:object)  { described_class.new(adapter, relation)    }
   let(:args)     { double                                    }

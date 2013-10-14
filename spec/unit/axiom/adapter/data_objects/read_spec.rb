@@ -8,7 +8,7 @@ describe Adapter::DataObjects, '#read' do
   let(:object)    { described_class.new(uri) }
   let(:relation)  { double('Relation')       }
   let(:statement) { double('Statement')      }
-  let(:rows)      { [ [ 1 ], [ 2 ], [ 3 ] ]  }
+  let(:rows)      { [[1], [2], [3]]          }
   let(:yields)    { []                       }
 
   before do
@@ -19,7 +19,7 @@ describe Adapter::DataObjects, '#read' do
   context 'with a block' do
     subject { object.read(relation) { |row| yields << row } }
 
-    let(:connection) { double('Connection', :close => nil) }
+    let(:connection) { double('Connection', close: nil) }
 
     before do
       allow(DataObjects::Connection).to receive(:new).and_return(connection)
@@ -45,9 +45,7 @@ describe Adapter::DataObjects, '#read' do
     end
 
     it 'yields each row' do
-      expect { subject }.to change { yields.dup }.
-        from([]).
-        to(rows)
+      expect { subject }.to change { yields.dup }.from([]).to(rows)
     end
 
     it 'initializes a statement' do

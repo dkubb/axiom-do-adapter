@@ -6,10 +6,10 @@ require 'axiom/adapter/data_objects/statement'
 describe Adapter::DataObjects::Statement, '#to_s' do
   subject { object.to_s }
 
-  let(:sql)        { double('SQL')                       }
-  let(:connection) { double                              }
-  let(:relation)   { double('Relation')                  }
-  let(:generator)  { double('Generator', :to_sql => sql) }
+  let(:sql)        { double('SQL')                    }
+  let(:connection) { double                           }
+  let(:relation)   { double('Relation')               }
+  let(:generator)  { double('Generator', to_sql: sql) }
 
   context 'without a visitor' do
     let(:visitor) { SQL::Generator::Relation                  }  # default visitor
@@ -32,7 +32,7 @@ describe Adapter::DataObjects::Statement, '#to_s' do
   end
 
   context 'with a visitor' do
-    let(:visitor) { double('Visitor', :visit => generator)             }
+    let(:visitor) { double('Visitor', visit: generator)                }
     let(:object)  { described_class.new(connection, relation, visitor) }
 
     before do

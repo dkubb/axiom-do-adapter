@@ -9,8 +9,8 @@ module Axiom
       DECORATED_CLASS = superclass
 
       # remove methods so they can be proxied
-      undef_method *DECORATED_CLASS.public_instance_methods(false).map(&:to_s) - %w[ materialize ]
-      undef_method :project, :remove, :extend, :rename, :restrict, :sort_by, :reverse, :drop, :take
+      undef_method(*DECORATED_CLASS.public_instance_methods(false).map(&:to_s) - %w[materialize])
+      undef_method(:project, :remove, :extend, :rename, :restrict, :sort_by, :reverse, :drop, :take)
 
       # The adapter the gateway will use to fetch results
       #
@@ -184,7 +184,7 @@ module Axiom
       #   end
       #
       # @example with a header
-      #   summarization = gateway.summarize([ :name ]) do |context|
+      #   summarization = gateway.summarize([:name]) do |context|
       #     context.add(:count, context[:id].count)
       #   end
       #
