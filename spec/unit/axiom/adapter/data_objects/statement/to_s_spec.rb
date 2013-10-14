@@ -6,17 +6,17 @@ require 'axiom/adapter/data_objects/statement'
 describe Adapter::DataObjects::Statement, '#to_s' do
   subject { object.to_s }
 
-  let(:sql)        { mock('SQL')                       }
-  let(:connection) { stub                              }
-  let(:relation)   { mock('Relation')                  }
-  let(:generator)  { mock('Generator', :to_sql => sql) }
+  let(:sql)        { double('SQL')                       }
+  let(:connection) { double                              }
+  let(:relation)   { double('Relation')                  }
+  let(:generator)  { double('Generator', :to_sql => sql) }
 
   context 'without a visitor' do
     let(:visitor) { SQL::Generator::Relation                  }  # default visitor
     let(:object)  { described_class.new(connection, relation) }
 
     before do
-      visitor.stub!(:visit).and_return(generator)
+      allow(visitor).to receive(:visit).and_return(generator)
     end
 
     it_should_behave_like 'an idempotent method'
@@ -26,17 +26,17 @@ describe Adapter::DataObjects::Statement, '#to_s' do
     it { should equal(sql) }
 
     it 'visits the relation' do
-      visitor.should_receive(:visit).with(relation)
+      expect(visitor).to receive(:visit).with(relation)
       subject
     end
   end
 
   context 'with a visitor' do
-    let(:visitor) { mock('Visitor', :visit => generator)               }
+    let(:visitor) { double('Visitor', :visit => generator)             }
     let(:object)  { described_class.new(connection, relation, visitor) }
 
     before do
-      visitor.stub!(:visit).and_return(generator)
+      allow(visitor).to receive(:visit).and_return(generator)
     end
 
     it_should_behave_like 'an idempotent method'
@@ -46,7 +46,7 @@ describe Adapter::DataObjects::Statement, '#to_s' do
     it { should equal(sql) }
 
     it 'visits the relation' do
-      visitor.should_receive(:visit).with(relation)
+      expect(visitor).to receive(:visit).with(relation)
       subject
     end
   end

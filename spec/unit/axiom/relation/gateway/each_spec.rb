@@ -6,26 +6,26 @@ require 'axiom/relation/gateway'
 describe Relation::Gateway, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
-  let(:header)   { mock('Header')                         }
-  let(:reader)   { mock('Reader')                         }
-  let(:tuple)    { mock('Tuple')                          }
-  let(:adapter)  { mock('Adapter')                        }
-  let(:relation) { mock('Relation')                       }
+  let(:header)   { double('Header')                       }
+  let(:reader)   { double('Reader')                       }
+  let(:tuple)    { double('Tuple')                        }
+  let(:adapter)  { double('Adapter')                      }
+  let(:relation) { double('Relation')                     }
   let!(:object)  { described_class.new(adapter, relation) }
   let(:yields)   { []                                     }
 
   context 'with an unmaterialized relation' do
-    let(:wrapper) { stub }
+    let(:wrapper) { double }
 
     before do
-      adapter.stub!(:read).and_return(reader)
+      allow(adapter).to receive(:read).and_return(reader)
 
-      relation.stub!(:header).and_return(header)
-      relation.stub!(:materialized?).and_return(false)
-      relation.stub!(:each).and_return(relation)
+      allow(relation).to receive(:header).and_return(header)
+      allow(relation).to receive(:materialized?).and_return(false)
+      allow(relation).to receive(:each).and_return(relation)
 
-      wrapper.stub!(:each).and_yield(tuple)
-      Relation.stub!(:new).and_return(wrapper)
+      allow(wrapper).to receive(:each).and_yield(tuple)
+      allow(Relation).to receive(:new).and_return(wrapper)
     end
 
     it_should_behave_like 'an #each method'
@@ -37,19 +37,19 @@ describe Relation::Gateway, '#each' do
     end
 
     it 'passes in the relation to the adapter reader' do
-      adapter.should_receive(:read).with(relation)
+      expect(adapter).to receive(:read).with(relation)
       subject
     end
 
     it 'passes in the relation header and reader to the wrapper constructor' do
-      Relation.should_receive(:new).with(header, reader)
+      expect(Relation).to receive(:new).with(header, reader)
       subject
     end
   end
 
   context 'with a materialized relation' do
     before do
-      relation.stub!(:materialized?).and_return(true)
+      allow(relation).to receive(:materialized?).and_return(true)
 
       tuple = self.tuple
 
@@ -74,12 +74,12 @@ describe Relation::Gateway, '#each' do
     end
 
     it 'does not create a reader' do
-      adapter.should_not_receive(:read)
+      expect(adapter).not_to receive(:read)
       subject
     end
 
     it 'does not create a wrapper' do
-      Relation.should_not_receive(:new)
+      expect(Relation).not_to receive(:new)
       subject
     end
   end

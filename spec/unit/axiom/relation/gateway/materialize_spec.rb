@@ -6,22 +6,22 @@ require 'axiom/relation/gateway'
 describe Relation::Gateway, '#materialize' do
   subject { object.materialize }
 
-  let(:header)       { mock('Header')                                                                          }
-  let(:directions)   { mock('Directions')                                                                      }
-  let(:adapter)      { stub.as_null_object                                                                     }
-  let(:relation)     { mock('Relation', :header => header, :directions => directions, :materialized? => false) }
-  let!(:object)      { described_class.new(adapter, relation)                                                  }
-  let(:materialized) { mock('Materialized')                                                                    }
+  let(:header)       { double('Header')                                                                          }
+  let(:directions)   { double('Directions')                                                                      }
+  let(:adapter)      { double.as_null_object                                                                     }
+  let(:relation)     { double('Relation', :header => header, :directions => directions, :materialized? => false) }
+  let!(:object)      { described_class.new(adapter, relation)                                                    }
+  let(:materialized) { double('Materialized')                                                                    }
 
   before do
-    Relation::Materialized.stub!(:new).and_return(materialized)
-    Relation.stub!(:new).and_return(stub.as_null_object)
+    allow(Relation::Materialized).to receive(:new).and_return(materialized)
+    allow(Relation).to receive(:new).and_return(double.as_null_object)
   end
 
   it { should equal(materialized) }
 
   it 'initializes the materialized relation with the header, tuples and directions' do
-    Relation::Materialized.should_receive(:new).with(header, [], directions)
+    expect(Relation::Materialized).to receive(:new).with(header, [], directions)
     subject
   end
 end

@@ -4,19 +4,20 @@ require 'spec_helper'
 require 'axiom/adapter/data_objects/statement'
 
 describe Adapter::DataObjects::Statement, '#each' do
-  let(:reader)     { mock('Reader', :next! => false).as_null_object            }
-  let(:command)    { mock('Command', :execute_reader => reader).as_null_object }
-  let(:connection) { mock('Connection', :create_command => command)            }
-  let(:attribute)  { stub                                                      }
-  let(:primitive)  { stub                                                      }
-  let(:relation)   { mock('Relation', :header => [ attribute ])                }
-  let(:generator)  { mock('Generator').as_null_object                          }
-  let(:rows)       { [ stub, stub ]                                            }
-  let(:object)     { described_class.new(connection, relation, generator)      }
-  let(:yields)     { []                                                        }
+  let(:reader)     { double('Reader', :next! => false).as_null_object            }
+  let(:command)    { double('Command', :execute_reader => reader).as_null_object }
+  let(:connection) { double('Connection', :create_command => command)            }
+  let(:attribute)  { double                                                      }
+  let(:primitive)  { double                                                      }
+  let(:relation)   { double('Relation', :header => [ attribute ])                }
+  let(:generator)  { double('Generator').as_null_object                          }
+  let(:rows)       { [ double, double ]                                          }
+  let(:object)     { described_class.new(connection, relation, generator)        }
+  let(:yields)     { []                                                          }
 
   before do
-    command.stub!(:dup => command, :freeze => command)
+    allow(command).to receive(:dup).and_return(command)
+    allow(command).to receive(:freeze).and_return(command)
     attribute.stub_chain(:class, :primitive).and_return(primitive)
   end
 
@@ -26,7 +27,7 @@ describe Adapter::DataObjects::Statement, '#each' do
     it { should be_instance_of(to_enum.class) }
 
     it 'yields the expected attributes' do
-      subject.to_a.should eql(object.to_a)
+      expect(subject.to_a).to eql(object.to_a)
     end
   end
 
@@ -34,22 +35,22 @@ describe Adapter::DataObjects::Statement, '#each' do
     subject { object.each { |row| yields << row } }
 
     before do
-      connection.should_receive(:create_command).with(object.to_s)
+      expect(connection).to receive(:create_command).with(object.to_s)
 
-      command.should_receive(:set_types).with([ primitive ]).ordered
-      command.should_receive(:execute_reader).with(no_args).ordered
+      expect(command).to receive(:set_types).with([ primitive ]).ordered
+      expect(command).to receive(:execute_reader).with(no_args).ordered
 
       rows.each do |values|
-        reader.should_receive(:next!).with(no_args).ordered.and_return(true)
-        reader.should_receive(:values).with(no_args).ordered.and_return(values)
+        expect(reader).to receive(:next!).with(no_args).ordered.and_return(true)
+        expect(reader).to receive(:values).with(no_args).ordered.and_return(values)
       end
 
-      reader.should_receive(:next!).with(no_args).ordered.and_return(false)
-      reader.should_receive(:close).with(no_args).ordered
+      expect(reader).to receive(:next!).with(no_args).ordered.and_return(false)
+      expect(reader).to receive(:close).with(no_args).ordered
     end
 
     before do
-      relation.should_receive(:header)
+      expect(relation).to receive(:header)
     end
 
     it_should_behave_like 'a command method'

@@ -4,41 +4,41 @@ require 'spec_helper'
 require 'axiom/relation/gateway'
 
 describe Relation::Gateway, '#summarize' do
-  let(:summarization) { mock('Summarization', :kind_of? => true)      }
-  let(:adapter)       { mock('Adapter')                               }
-  let(:relation)      { mock('Relation', :summarize => summarization) }
-  let!(:object)       { described_class.new(adapter, relation)        }
-  let(:block)         { lambda { |context| }                          }
+  let(:summarization) { double('Summarization', :kind_of? => true)      }
+  let(:adapter)       { double('Adapter')                               }
+  let(:relation)      { double('Relation', :summarize => summarization) }
+  let!(:object)       { described_class.new(adapter, relation)          }
+  let(:block)         { lambda { |context| }                            }
 
   context 'with no arguments' do
     subject { object.summarize(&block) }
 
-    let(:gateway) { mock('New Gateway') }
+    let(:gateway) { double('New Gateway') }
 
     before do
-      described_class.stub!(:new).and_return(gateway)
+      allow(described_class).to receive(:new).and_return(gateway)
     end
 
     it { should equal(gateway) }
 
     it 'forwards the default summarize_with relation to relation#summarize' do
-      relation.should_receive(:summarize) do |other|
-        other.should equal(TABLE_DEE)
+      expect(relation).to receive(:summarize) do |other|
+        expect(other).to equal(TABLE_DEE)
       end
       subject
     end
 
     unless testing_block_passing_broken?
       it 'forwards the block to relation#summarize' do
-        relation.should_receive(:summarize) do |_summarize_with, &proc|
-          proc.should equal(block)
+        expect(relation).to receive(:summarize) do |_summarize_with, &proc|
+          expect(proc).to equal(block)
         end
         subject
       end
     end
 
     it 'initializes the gateway with the adapter and summarization' do
-      described_class.should_receive(:new).with(adapter, summarization)
+      expect(described_class).to receive(:new).with(adapter, summarization)
       subject
     end
   end
@@ -46,33 +46,33 @@ describe Relation::Gateway, '#summarize' do
   context 'with a header' do
     subject { object.summarize(header, &block) }
 
-    let(:gateway) { mock('New Gateway') }
-    let(:header)  { mock('Header')      }
+    let(:gateway) { double('New Gateway') }
+    let(:header)  { double('Header')      }
 
     before do
-      described_class.stub!(:new).and_return(gateway)
+      allow(described_class).to receive(:new).and_return(gateway)
     end
 
     it { should equal(gateway) }
 
     it 'forwards the header to relation#summarize' do
-      relation.should_receive(:summarize) do |other|
-        other.should equal(header)
+      expect(relation).to receive(:summarize) do |other|
+        expect(other).to equal(header)
       end
       subject
     end
 
     unless testing_block_passing_broken?
       it 'forwards the block to relation#summarize' do
-        relation.should_receive(:summarize) do |_summarize_with, &proc|
-          proc.should equal(block)
+        expect(relation).to receive(:summarize) do |_summarize_with, &proc|
+          expect(proc).to equal(block)
         end
         subject
       end
     end
 
     it 'initializes the gateway with the adapter and summarization' do
-      described_class.should_receive(:new).with(adapter, summarization)
+      expect(described_class).to receive(:new).with(adapter, summarization)
       subject
     end
   end
@@ -80,35 +80,35 @@ describe Relation::Gateway, '#summarize' do
   context 'when summarize_with has the same adapter' do
     subject { object.summarize(other, &block) }
 
-    let(:header)         { mock('Header')                               }
-    let(:other_relation) { mock('Other Relation', :header => header)    }
+    let(:header)         { double('Header')                             }
+    let(:other_relation) { double('Other Relation', :header => header)  }
     let!(:other)         { described_class.new(adapter, other_relation) }
-    let(:gateway)        { mock('New Gateway')                          }
+    let(:gateway)        { double('New Gateway')                        }
 
     before do
-      described_class.stub!(:new).and_return(gateway)
+      allow(described_class).to receive(:new).and_return(gateway)
     end
 
     it { should equal(gateway) }
 
     it 'forwards the other relation to relation#summarize' do
-      relation.should_receive(:summarize) do |other|
-        other.should equal(other_relation)
+      expect(relation).to receive(:summarize) do |other|
+        expect(other).to equal(other_relation)
       end
       subject
     end
 
     unless testing_block_passing_broken?
       it 'forwards the block to relation#summarize' do
-        relation.should_receive(:summarize) do |_summarize_with, &proc|
-          proc.should equal(block)
+        expect(relation).to receive(:summarize) do |&proc|
+          expect(proc).to equal(block)
         end
         subject
       end
     end
 
     it 'initializes the gateway with the adapter and summarization' do
-      described_class.should_receive(:new).with(adapter, summarization)
+      expect(described_class).to receive(:new).with(adapter, summarization)
       subject
     end
   end
@@ -116,38 +116,38 @@ describe Relation::Gateway, '#summarize' do
   context 'with a relation' do
     subject { object.summarize(summarize_with, &block) }
 
-    let(:context_header)   { mock('Context Header')                              }
-    let(:header)           { mock('Header', :- => context_header)                }
-    let(:summarize_header) { mock('Summarize With Header')                       }
-    let(:summarize_with)   { mock('Other Relation', :header => summarize_header) }
-    let(:functions)        { mock('Functions')                                   }
-    let(:context)          { mock('Context', :functions => functions)            }
+    let(:context_header)   { double('Context Header')                              }
+    let(:header)           { double('Header', :- => context_header)                }
+    let(:summarize_header) { double('Summarize With Header')                       }
+    let(:summarize_with)   { double('Other Relation', :header => summarize_header) }
+    let(:functions)        { double('Functions')                                   }
+    let(:context)          { double('Context', :functions => functions)            }
 
     before do
-      relation.stub!(:header).and_return(header)
-      Algebra::Summarization.stub!(:new).and_return(summarization)
-      Evaluator::Context.stub!(:new).and_return(context)
+      allow(relation).to receive(:header).and_return(header)
+      allow(Algebra::Summarization).to receive(:new).and_return(summarization)
+      allow(Evaluator::Context).to receive(:new).and_return(context)
     end
 
     it { should equal(summarization) }
 
     it 'gets the context header' do
-      header.should_receive(:-).with(summarize_header)
+      expect(header).to receive(:-).with(summarize_header)
       subject
     end
 
     it 'passes the context header into the context' do
-      Evaluator::Context.should_receive(:new).with(context_header)
+      expect(Evaluator::Context).to receive(:new).with(context_header)
       subject
     end
 
     it 'forwards the block to the context' do
-      Evaluator::Context.stub!(:new) { |_header, proc| proc.should equal(block) }.and_return(context)
+      allow(Evaluator::Context).to receive(:new) { |&proc| expect(proc).to equal(block) }.and_return(context)
       subject
     end
 
     it 'initializes the summarization with the gateway, the relation and the functions' do
-      Algebra::Summarization.should_receive(:new).with(object, summarize_with, functions)
+      expect(Algebra::Summarization).to receive(:new).with(object, summarize_with, functions)
       subject
     end
   end

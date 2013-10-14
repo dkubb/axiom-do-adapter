@@ -4,8 +4,8 @@ require 'spec_helper'
 require 'axiom/adapter/data_objects/statement'
 
 describe Adapter::DataObjects::Statement, '.new' do
-  let(:connection) { stub            }
-  let(:relation)   { stub            }
+  let(:connection) { double          }
+  let(:relation)   { double          }
   let(:object)     { described_class }
 
   context 'without a visitor' do
@@ -19,7 +19,7 @@ describe Adapter::DataObjects::Statement, '.new' do
   context 'with a visitor' do
     subject { object.new(connection, relation, visitor) }
 
-    let(:visitor) { stub }
+    let(:visitor) { double }
 
     it { should be_instance_of(described_class) }
 

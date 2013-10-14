@@ -1,10 +1,5 @@
 # encoding: utf-8
 
-require 'backports'
-require 'backports/basic_object' unless defined?(::BasicObject)
-require 'devtools/spec_helper'
-require 'ice_nine'
-
 if ENV['COVERAGE'] == 'true'
   require 'simplecov'
   require 'coveralls'
@@ -15,24 +10,28 @@ if ENV['COVERAGE'] == 'true'
   ]
 
   SimpleCov.start do
-    command_name     'spec:unit'
-    add_filter       'config'
-    add_filter       'spec'
+    command_name 'spec:unit'
+
+    add_filter 'config'
+    add_filter 'spec'
+    add_filter 'vendor'
+
     minimum_coverage 100
   end
 end
 
+require 'ice_nine'
+require 'devtools/spec_helper'
 require 'axiom-do-adapter'
 
 include Axiom
 
-# require spec support files and shared behavior
-Dir[File.expand_path('../{support,shared}/**/*.rb', __FILE__)].each do |file|
-  require file
-end
-
 RSpec.configure do |config|
   config.extend Spec::ExampleGroupMethods
+
+  config.expect_with :rspec do |expect_with|
+    expect_with.syntax = :expect
+  end
 
   # Record the original Attribute descendants
   config.before do
