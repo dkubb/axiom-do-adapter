@@ -1,5 +1,4 @@
-axiom-do-adapter
-================
+# axiom-do-adapter
 
 Use Axiom relations with an SQL based RDBMS
 
@@ -15,12 +14,10 @@ Use Axiom relations with an SQL based RDBMS
 [codeclimate]: https://codeclimate.com/github/dkubb/axiom-do-adapter
 [coveralls]: https://coveralls.io/r/dkubb/axiom-do-adapter
 
-Contributing
-------------
+## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
-Copyright
----------
+## Copyright
 
 Copyright &copy; 2011-2013 Dan Kubb. See LICENSE for details.
