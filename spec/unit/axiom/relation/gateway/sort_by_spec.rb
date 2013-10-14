@@ -20,10 +20,8 @@ describe Relation::Gateway, '#sort_by' do
     subject
   end
 
-  unless testing_block_passing_broken?
-    it 'forwards the block to relation#sort_by' do
-      expect(relation).to receive(:sort_by) { |&proc| expect(proc).to equal(block) }
-      subject
-    end
+  it 'forwards the block to relation#sort_by' do
+    expect(relation).to receive(:sort_by) { |&proc| expect(proc).to equal(block) }
+    subject
   end
 end

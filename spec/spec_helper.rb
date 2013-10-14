@@ -25,8 +25,6 @@ require 'axiom-do-adapter'
 include Axiom
 
 RSpec.configure do |config|
-  config.extend Spec::ExampleGroupMethods
-
   config.expect_with :rspec do |expect_with|
     expect_with.syntax = :expect
   end

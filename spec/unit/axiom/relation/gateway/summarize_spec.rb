@@ -28,13 +28,11 @@ describe Relation::Gateway, '#summarize' do
       subject
     end
 
-    unless testing_block_passing_broken?
-      it 'forwards the block to relation#summarize' do
-        expect(relation).to receive(:summarize) do |_summarize_with, &proc|
-          expect(proc).to equal(block)
-        end
-        subject
+    it 'forwards the block to relation#summarize' do
+      expect(relation).to receive(:summarize) do |_summarize_with, &proc|
+        expect(proc).to equal(block)
       end
+      subject
     end
 
     it 'initializes the gateway with the adapter and summarization' do
@@ -62,13 +60,11 @@ describe Relation::Gateway, '#summarize' do
       subject
     end
 
-    unless testing_block_passing_broken?
-      it 'forwards the block to relation#summarize' do
-        expect(relation).to receive(:summarize) do |_summarize_with, &proc|
-          expect(proc).to equal(block)
-        end
-        subject
+    it 'forwards the block to relation#summarize' do
+      expect(relation).to receive(:summarize) do |_summarize_with, &proc|
+        expect(proc).to equal(block)
       end
+      subject
     end
 
     it 'initializes the gateway with the adapter and summarization' do
@@ -98,13 +94,11 @@ describe Relation::Gateway, '#summarize' do
       subject
     end
 
-    unless testing_block_passing_broken?
-      it 'forwards the block to relation#summarize' do
-        expect(relation).to receive(:summarize) do |&proc|
-          expect(proc).to equal(block)
-        end
-        subject
+    it 'forwards the block to relation#summarize' do
+      expect(relation).to receive(:summarize) do |&proc|
+        expect(proc).to equal(block)
       end
+      subject
     end
 
     it 'initializes the gateway with the adapter and summarization' do

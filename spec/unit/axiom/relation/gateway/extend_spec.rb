@@ -20,10 +20,8 @@ describe Relation::Gateway, '#extend' do
     subject
   end
 
-  unless testing_block_passing_broken?
-    it 'forwards the block to relation#extend' do
-      expect(relation).to receive(:extend) { |&proc| expect(proc).to equal(block) }
-      subject
-    end
+  it 'forwards the block to relation#extend' do
+    expect(relation).to receive(:extend) { |&proc| expect(proc).to equal(block) }
+    subject
   end
 end
