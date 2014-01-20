@@ -95,7 +95,7 @@ module Axiom
         #
         # @api private
         def column_types
-          @relation.header.map { |attribute| attribute.class.primitive }
+          @relation.header.map { |attribute| attribute.type.primitive }
         end
 
         memoize :to_s

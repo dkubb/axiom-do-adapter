@@ -18,7 +18,7 @@ describe Adapter::DataObjects::Statement, '#each' do
   before do
     allow(command).to receive(:dup).and_return(command)
     allow(command).to receive(:freeze).and_return(command)
-    attribute.stub_chain(:class, :primitive).and_return(primitive)
+    attribute.stub_chain(:type, :primitive).and_return(primitive)
   end
 
   context 'with no block' do
