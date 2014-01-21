@@ -67,13 +67,8 @@ TooManyMethods:
   max_methods: 10
 TooManyStatements:
   enabled: true
-  exclude:
-  - Axiom::Adapter::DataObjects#read
-  - Axiom::Adapter::DataObjects::Statement#command
-  - Axiom::Relation::Gateway#forward
-  - Axiom::Relation::Gateway#tuples
-  - each
-  max_statements: 2
+  exclude: []
+  max_statements: 5
 UncommunicativeMethodName:
   enabled: true
   exclude: []
