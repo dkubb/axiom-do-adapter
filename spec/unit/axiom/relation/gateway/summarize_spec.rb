@@ -8,7 +8,7 @@ describe Relation::Gateway, '#summarize' do
   let(:adapter)       { double('Adapter')                            }
   let(:relation)      { double('Relation', summarize: summarization) }
   let!(:object)       { described_class.new(adapter, relation)       }
-  let(:block)         { ->(context) { }                              }
+  let(:block)         { ->(context) {}                               }
 
   context 'with no arguments' do
     subject { object.summarize(&block) }

@@ -11,7 +11,7 @@ describe Relation::Gateway, '#sort_by' do
   let(:response) { double('New Relation', :kind_of? => true) }
   let!(:object)  { described_class.new(adapter, relation)    }
   let(:args)     { double                                    }
-  let(:block)    { ->(context) { }                           }
+  let(:block)    { ->(context) {}                            }
 
   it_should_behave_like 'a unary relation method'
 
