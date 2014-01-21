@@ -6,7 +6,7 @@ module Axiom
 
       # Executes generated SQL statements
       class Statement
-        include Enumerable, Adamantium
+        include Enumerable, Adamantium::Flat
 
         # Initialize a statement
         #
@@ -24,7 +24,6 @@ module Axiom
           @connection = connection
           @relation   = relation
           @visitor    = visitor
-          freeze
         end
 
         # Iterate over each row in the results
