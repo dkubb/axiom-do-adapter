@@ -21,5 +21,5 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency('axiom-sql-generator', '~> 0.1.0')
   gem.add_runtime_dependency('data_objects',        '~> 0.10.13')
 
-  gem.add_development_dependency('bundler', '~> 1.3', '>= 1.3.5')
+  gem.add_development_dependency('bundler', '~> 1.5', '>= 1.5.2')
 end
